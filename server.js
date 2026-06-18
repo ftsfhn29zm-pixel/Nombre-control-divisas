@@ -649,6 +649,88 @@ app.post("/transacciones/:id/anular", (req, res) => {
     });
   });
 });
+app.post("/cambiar-password", async (req, res) => {
+  const { admin_id, usuario_id, nueva_password } = req.body;
+
+  if (!nueva_password || nueva_password.length < 4) {
+    return res.status(400).json({
+      error: "La contraseña debe tener al menos 4 caracteres"
+    });
+  }
+
+  db.get(
+    "SELECT * FROM usuarios WHERE id = ? AND rol = 'admin'",
+    [admin_id],
+    async (err, admin) => {
+      if (err) return res.status(500).json({ error: "Error buscando admin" });
+
+      if (!admin) {
+        return res.status(403).json({
+          error: "Solo administradores pueden cambiar contraseñas"
+        });
+      }
+
+      const hash = await bcrypt.hash(nueva_password, 10);
+
+      db.run(
+        "UPDATE usuarios SET password = ? WHERE id = ?",
+        [hash, usuario_id],
+        function (err) {
+          if (err) {
+            return res.status(500).json({
+              error: "Error actualizando contraseña"
+            });
+          }
+
+          res.json({
+            mensaje: "Contraseña actualizada correctamente"
+          });
+        }
+      );
+    }
+  );
+});
+app.post("/cambiar-password", async (req, res) => {
+  const { admin_id, usuario_id, nueva_password } = req.body;
+
+  if (!nueva_password || nueva_password.length < 4) {
+    return res.status(400).json({
+      error: "La contraseña debe tener al menos 4 caracteres"
+    });
+  }
+
+  db.get(
+    "SELECT * FROM usuarios WHERE id = ? AND rol = 'admin'",
+    [admin_id],
+    async (err, admin) => {
+      if (err) return res.status(500).json({ error: "Error buscando admin" });
+
+      if (!admin) {
+        return res.status(403).json({
+          error: "Solo administradores pueden cambiar contraseñas"
+        });
+      }
+
+      const hash = await bcrypt.hash(nueva_password, 10);
+
+      db.run(
+        "UPDATE usuarios SET password = ? WHERE id = ?",
+        [hash, usuario_id],
+        function (err) {
+          if (err) {
+            return res.status(500).json({
+              error: "Error actualizando contraseña"
+            });
+          }
+
+          res.json({
+            mensaje: "Contraseña actualizada correctamente"
+          });
+        }
+      );
+    }
+  );
+});
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });

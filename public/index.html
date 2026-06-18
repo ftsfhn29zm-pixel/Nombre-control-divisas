@@ -52,6 +52,22 @@ button:hover{filter:brightness(1.05)}
 .recibo{background:white;color:#111827;padding:18px;border-radius:10px;margin-top:12px;font-family:monospace;max-width:360px}
 .recibo h2,.recibo h3{text-align:center;margin:4px 0}.recibo hr{border:none;border-top:1px dashed #111827}.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
 .mobileNav{display:none}
+.heroDashboard{background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(250,204,21,.10),rgba(34,197,94,.08));border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:14px;display:grid;grid-template-columns:1.4fr .8fr;gap:14px;align-items:center}
+.heroDashboard h1{margin:0 0 6px;font-size:30px}
+.heroDashboard p{margin:0;color:var(--muted)}
+.heroAmount{background:rgba(2,6,23,.36);border:1px solid var(--line);border-radius:20px;padding:16px;text-align:right}
+.heroAmount span{color:var(--muted);font-size:13px}
+.heroAmount h2{margin:8px 0 0;font-size:30px;color:var(--gold)}
+.actionGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.actionCard{background:rgba(15,23,42,.9);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;transition:.15s}
+.actionCard:hover{transform:translateY(-2px);border-color:rgba(56,189,248,.45)}
+.actionCard b{display:block;margin-bottom:5px}
+.actionCard span{color:var(--muted);font-size:13px}
+.statLine{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.statMini{background:#08111f;border:1px solid var(--line);border-radius:14px;padding:12px}
+.statMini span{color:var(--muted);font-size:12px}
+.statMini b{display:block;margin-top:6px;font-size:18px}
+@media(max-width:980px){.heroDashboard{grid-template-columns:1fr}.heroAmount{text-align:left}.actionGrid{grid-template-columns:1fr 1fr}.statLine{grid-template-columns:1fr}}
 @media(max-width:980px){
   .layout{grid-template-columns:1fr}.sidebar{display:none}.main{padding:12px}.mobileNav{display:flex;gap:8px;overflow:auto;margin-bottom:12px}.mobileNav button{min-width:135px}
   .metrics{grid-template-columns:1fr 1fr}.grid,.grid3{grid-template-columns:1fr}.topbar{height:auto;align-items:flex-start;gap:10px;flex-direction:column}
@@ -113,19 +129,52 @@ button:hover{filter:brightness(1.05)}
     </div>
 
     <section id="dashboard" class="view active">
-      <div class="metrics">
-        <div class="metric"><span>Presupuesto DOP</span><h2 id="presupuesto">RD$ 0</h2></div>
-        <div class="metric"><span>USD Disponibles</span><h2 id="usd">0.00</h2></div>
-        <div class="metric gold"><span>Promedio Compra USD</span><h2 id="costoPromedio">RD$ 0.00</h2></div>
-        <div class="metric"><span>Rol</span><h2 id="rol">-</h2></div>
-    <div class="metric green soloAdmin"><span>Ganancia Hoy</span><h2 id="gananciaHoy">RD$ 0.00</h2></div>
-<div class="metric green soloAdmin"><span>Ganancia Mes</span><h2 id="gananciaMes">RD$ 0.00</h2></div>
-<div class="metric green soloAdmin"><span>Ganancia Total</span><h2 id="gananciaTotal">RD$ 0.00</h2></div>
-        <div class="metric"><span>Estado</span><h2>Activo</h2></div>
+      <div class="heroDashboard">
+        <div>
+          <h1>🏦 Panel Principal</h1>
+          <p>Resumen financiero en tiempo real de Divisas Pro</p>
+        </div>
+        <div class="heroAmount">
+          <span>Presupuesto DOP</span>
+          <h2 id="presupuestoHero">RD$ 0.00</h2>
+        </div>
       </div>
+
+      <div class="metrics">
+        <div class="metric"><span>💰 Presupuesto DOP</span><h2 id="presupuesto">RD$ 0</h2></div>
+        <div class="metric"><span>💵 USD Disponibles</span><h2 id="usd">0.00</h2></div>
+        <div class="metric gold"><span>📈 Promedio Compra USD</span><h2 id="costoPromedio">RD$ 0.00</h2></div>
+        <div class="metric"><span>👤 Rol</span><h2 id="rol">-</h2></div>
+        <div class="metric green soloAdmin"><span>🟢 Ganancia Hoy</span><h2 id="gananciaHoy">RD$ 0.00</h2></div>
+        <div class="metric green soloAdmin"><span>📅 Ganancia Mes</span><h2 id="gananciaMes">RD$ 0.00</h2></div>
+        <div class="metric green soloAdmin"><span>🏆 Ganancia Total</span><h2 id="gananciaTotal">RD$ 0.00</h2></div>
+        <div class="metric"><span>✅ Estado</span><h2>Activo</h2></div>
+      </div>
+
+      <div class="actionGrid">
+        <div class="actionCard" onclick="showView('operaciones')"><b>🛒 Comprar USD</b><span>Registrar compra rápida</span></div>
+        <div class="actionCard" onclick="showView('operaciones')"><b>💸 Vender USD</b><span>Registrar venta rápida</span></div>
+        <div class="actionCard" onclick="showView('historialView')"><b>🧾 Historial</b><span>Ver operaciones</span></div>
+        <div class="actionCard soloAdmin" onclick="showView('cajeros')"><b>👥 Cajeros</b><span>Fondos y usuarios</span></div>
+      </div>
+
       <div class="grid">
-        <div class="card"><h3>📌 Atajos</h3><button onclick="showView('operaciones')">Registrar compra / venta</button><button class="gris" onclick="showView('historialView')">Ver historial</button></div>
-        <div class="card"><h3>📊 Referencia</h3><p class="muted">El promedio de compra sirve como referencia interna para calcular ganancia automática en ventas.</p><p><b>Inventario valorizado:</b> <span id="valorInventario">RD$ 0.00</span></p></div>
+        <div class="card">
+          <h3>📊 Referencia Operativa</h3>
+          <div class="statLine">
+            <div class="statMini"><span>Inventario valorizado</span><b id="valorInventario">RD$ 0.00</b></div>
+            <div class="statMini"><span>Promedio compra</span><b id="promedioMini">RD$ 0.00</b></div>
+            <div class="statMini"><span>USD en caja</span><b id="usdMini">0.00</b></div>
+          </div>
+          <p class="muted">El promedio de compra se usa como referencia interna para calcular la ganancia automática en ventas.</p>
+        </div>
+
+        <div class="card">
+          <h3>⚡ Acciones Rápidas</h3>
+          <button onclick="showView('operaciones')">Nueva operación</button>
+          <button class="gris" onclick="showView('historialView')">Ver historial</button>
+          <button class="amarillo soloAdmin" onclick="showView('cajeros')">Administrar cajeros</button>
+        </div>
       </div>
     </section>
 
@@ -177,10 +226,6 @@ button:hover{filter:brightness(1.05)}
             <h3>👤 Crear Cajero</h3>
             <input id="nuevoNombre" placeholder="Nombre del cajero">
             <input id="nuevoPassword" type="password" placeholder="Contraseña">
-            <select id="nuevoRol">
-  <option value="cajero">Cajero</option>
-  <option value="admin">Administrador</option>
-</select>
             <button class="amarillo" onclick="crearCajero()">Crear Cajero</button>
           </div>
 
@@ -257,13 +302,14 @@ function logout(){
 function render(){
   bienvenida.innerHTML='📊 Bienvenido, '+user.nombre;
   presupuesto.innerHTML=dinero(user.presupuesto_dop||0);
+  if(document.getElementById('presupuestoHero')) presupuestoHero.innerHTML=dinero(user.presupuesto_dop||0);
   usd.innerHTML=numero(user.usd_disponibles||0);
   costoPromedio.innerHTML=dinero(user.costo_promedio||0);
+  if(document.getElementById('promedioMini')) promedioMini.innerHTML=dinero(user.costo_promedio||0);
+  if(document.getElementById('usdMini')) usdMini.innerHTML=numero(user.usd_disponibles||0);
   rol.innerHTML=user.rol;
-  document.querySelectorAll('.soloAdmin').forEach(e=>{
-  e.style.display = user.rol === 'admin' ? 'block' : 'none';
-});
   valorInventario.innerHTML=dinero(Number(user.usd_disponibles||0)*Number(user.costo_promedio||0));
+  document.querySelectorAll('.soloAdmin').forEach(e=>{e.style.display=user.rol==='admin'?'block':'none';});
   cargarHistorial();
   cargarGanancias();
 }
@@ -302,79 +348,22 @@ async function modificarUsdGeneral(){
 }
 
 async function crearCajero(){
-  const res = await fetch('/usuarios', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      admin_id: user.id,
-      nombre: nuevoNombre.value.trim(),
-      password: nuevoPassword.value,
-      rol: nuevoRol.value
-    })
-  });
-
-  const data = await res.json();
-
-  alert(data.mensaje || data.error);
-
-  nuevoNombre.value = '';
-  nuevoPassword.value = '';
-  nuevoRol.value = 'cajero';
-
-  cargarUsuarios();
+  const res=await fetch('/usuarios',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,nombre:nuevoNombre.value.trim(),password:nuevoPassword.value,rol:'cajero'})});
+  const data=await res.json();alert(data.mensaje||data.error);nuevoNombre.value='';nuevoPassword.value='';cargarUsuarios();
 }
 
 async function cargarUsuarios(){
-  const res = await fetch('/usuarios/' + user.id);
-  const data = await res.json();
-
-  if(data.error){
-    listaUsuarios.innerHTML = data.error;
-    return;
-  }
-
-  usuariosCache = data;
-
-  let html = '';
-  let opciones = '<option value="">Seleccione cajero</option>';
-
-  data.forEach(u => {
-
-    if(u.rol === 'cajero'){
-      opciones += `<option value="${u.id}">
-        ID ${u.id} - ${u.nombre}
-      </option>`;
-    }
-
-    const colorRol =
-      u.rol === 'admin'
-        ? '#facc15'
-        : '#38bdf8';
-
-    html += `
-      <div class="item">
-        <span class="tag">ID ${u.id}</span><br>
-
-        <b>Nombre:</b> ${u.nombre}<br>
-
-        <b>Rol:</b>
-        <span style="color:${colorRol};font-weight:bold;">
-          ${u.rol.toUpperCase()}
-        </span><br>
-
-        <b>DOP:</b> ${dinero(u.presupuesto_dop || 0)}<br>
-
-        <b>USD:</b> ${numero(u.usd_disponibles || 0)}<br>
-
-        <b>Activo:</b> ${u.activo ? 'Sí' : 'No'}
-      </div>
-    `;
+  const res=await fetch('/usuarios/'+user.id);
+  const data=await res.json();
+  if(data.error)return listaUsuarios.innerHTML=data.error;
+  usuariosCache=data;
+  let html='', opciones='<option value="">Seleccione cajero</option>';
+  data.forEach(u=>{
+    if(u.rol==='cajero') opciones+=`<option value="${u.id}">ID ${u.id} - ${u.nombre}</option>`;
+    html+=`<div class="item"><span class="tag">ID ${u.id}</span><br><b>Nombre:</b> ${u.nombre}<br><b>Rol:</b> ${u.rol}<br><b>DOP:</b> ${dinero(u.presupuesto_dop||0)}<br><b>USD:</b> ${numero(u.usd_disponibles||0)}<br><b>Activo:</b> ${u.activo?'Sí':'No'}</div>`;
   });
-
-  listaUsuarios.innerHTML = html || 'Sin usuarios';
-  cajeroSelectFondos.innerHTML = opciones;
+  listaUsuarios.innerHTML=html||'Sin usuarios';
+  cajeroSelectFondos.innerHTML=opciones;
 }
 
 async function moverFondos(){
