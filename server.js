@@ -731,6 +731,101 @@ app.post("/cambiar-password", async (req, res) => {
     }
   );
 });
+// BACKUP BASE DE DATOS - SOLO ADMIN
+app.get("/backup-db/:admin_id", (req, res) => {
+  const { admin_id } = req.params;
+
+  db.get("SELECT * FROM usuarios WHERE id = ? AND rol = 'admin'", [admin_id], (err, admin) => {
+    if (err) return res.status(500).send("Error buscando admin");
+    if (!admin) return res.status(403).send("Solo admin puede descargar backup");
+
+    res.download("./database.db", `backup-divisas-pro-${Date.now()}.db`);
+  });
+});
+
+// EXPORTAR OPERACIONES CSV - SOLO ADMIN
+app.get("/exportar-operaciones/:admin_id", (req, res) => {
+  const { admin_id } = req.params;
+
+  db.get("SELECT * FROM usuarios WHERE id = ? AND rol = 'admin'", [admin_id], (err, admin) => {
+    if (err) return res.status(500).send("Error buscando admin");
+    if (!admin) return res.status(403).send("Solo admin puede exportar operaciones");
+
+    db.all(
+      `SELECT 
+        t.id,
+        u.nombre AS cajero,
+        t.tipo,
+        t.cliente_nombre,
+        t.cliente_documento,
+        t.monto_usd,
+        t.tasa,
+        t.monto_dop,
+        t.ganancia,
+        t.costo_promedio,
+        t.anulada,
+        t.motivo_anulacion,
+        t.fecha
+      FROM transacciones t
+      LEFT JOIN usuarios u ON u.id = t.usuario_id
+      ORDER BY t.id DESC`,
+      [],
+      (err, rows) => {
+        if (err) return res.status(500).send("Error exportando operaciones: " + err.message);
+
+        let csv = "ID,Cajero,Tipo,Cliente,Documento,USD,Tasa,DOP,Ganancia,Costo Promedio,Anulada,Motivo,Fecha\n";
+
+        rows.forEach(r => {
+          csv += [
+            r.id,
+            r.cajero || "",
+            r.tipo || "",
+            r.cliente_nombre || "",
+            r.cliente_documento || "",
+            r.monto_usd || 0,
+            r.tasa || 0,
+            r.monto_dop || 0,
+            r.ganancia || 0,
+            r.costo_promedio || 0,
+            r.anulada ? "SI" : "NO",
+            r.motivo_anulacion || "",
+            r.fecha || ""
+          ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(",") + "\n";
+        });
+
+        res.setHeader("Content-Type", "text/csv");
+        res.setHeader("Content-Disposition", `attachment; filename=operaciones-divisas-pro-${Date.now()}.csv`);
+        res.send(csv);
+      }
+    );
+  });
+});
+// CAMBIAR ROL DE USUARIO - SOLO ADMIN
+app.post("/cambiar-rol", (req, res) => {
+  const { admin_id, usuario_id, nuevo_rol } = req.body;
+if (Number(usuario_id) === 1) {
+  return res.status(400).json({
+    error: "No se puede modificar el rol del administrador principal"
+  });
+}
+  if (!["admin", "cajero"].includes(nuevo_rol)) {
+    return res.status(400).json({ error: "Rol inválido" });
+  }
+
+  db.get("SELECT * FROM usuarios WHERE id = ? AND rol = 'admin'", [admin_id], (err, admin) => {
+    if (err) return res.status(500).json({ error: "Error buscando admin" });
+    if (!admin) return res.status(403).json({ error: "Solo admin puede cambiar roles" });
+
+    db.run(
+      "UPDATE usuarios SET rol = ? WHERE id = ?",
+      [nuevo_rol, usuario_id],
+      (err) => {
+        if (err) return res.status(500).json({ error: "Error cambiando rol" });
+        res.json({ mensaje: "Rol actualizado correctamente" });
+      }
+    );
+  });
+});
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Divisas Pro Compact</title>
+<title>Divisas Pro</title>
 <style>
 *{box-sizing:border-box}
 :root{
@@ -31,27 +31,47 @@ body{margin:0;font-family:Arial,sans-serif;background:radial-gradient(circle at 
 .sidebarFooter{position:absolute;left:18px;right:18px;bottom:18px;color:var(--muted);font-size:12px}
 .main{padding:18px;max-width:1400px;width:100%;margin:0 auto}
 .topbar{height:64px;background:rgba(15,23,42,.78);border:1px solid var(--line);border-radius:20px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;backdrop-filter:blur(10px)}
-.topbar h2{margin:0;font-size:22px}.userpill{background:#17243a;border:1px solid var(--line);padding:9px 12px;border-radius:999px;color:var(--muted)}
+.topbar h2{margin:0;font-size:22px}
+.userpill{background:#17243a;border:1px solid var(--line);padding:9px 12px;border-radius:999px;color:var(--muted)}
 .card{background:rgba(17,28,49,.92);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,.22)}
 .card h3{margin:0 0 12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
 .metric{background:linear-gradient(135deg,#17243a,#0f172a);border:1px solid var(--line);border-radius:18px;padding:14px;min-height:98px}
-.metric span{font-size:13px;color:var(--muted)}.metric h2{margin:10px 0 0;font-size:24px}.metric.green h2{color:var(--green)}.metric.gold h2{color:var(--gold)}
+.metric span{font-size:13px;color:var(--muted)}
+.metric h2{margin:10px 0 0;font-size:24px}
+.metric.green h2{color:var(--green)}
+.metric.gold h2{color:var(--gold)}
 input,select{width:100%;padding:12px;margin:6px 0;border-radius:12px;background:#08111f;color:white;border:1px solid #243247;outline:none}
-input:focus,select:focus{border-color:var(--blue)}input[readonly]{background:#111827;color:var(--gold);font-weight:bold}
+input:focus,select:focus{border-color:var(--blue)}
+input[readonly]{background:#111827;color:var(--gold);font-weight:bold}
 button{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--blue),#0ea5e9);color:#020617;font-weight:bold;margin-top:8px;cursor:pointer}
 button:hover{filter:brightness(1.05)}
-.verde{background:linear-gradient(135deg,var(--green),#16a34a)}.amarillo{background:linear-gradient(135deg,var(--gold),#eab308)}.rojo{background:linear-gradient(135deg,var(--red),#dc2626);color:white}.gris{background:#475569;color:white}
-.view{display:none}.view.active{display:block}.oculto{display:none!important}
-.item{background:#08111f;padding:12px;border-radius:14px;margin-bottom:10px;border-left:4px solid var(--blue)}.item.venta{border-left-color:var(--green)}.item.fondo{border-left-color:var(--gold)}.item.anulada{opacity:.65;border-left-color:var(--red)}
-.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#243247;font-size:12px;margin-bottom:6px}.muted{color:var(--muted)}.ganancia{color:var(--green)}.perdida{color:var(--red)}
-.splitList{max-height:520px;overflow:auto;padding-right:4px}.miniActions{display:flex;gap:8px}.miniActions button{max-width:180px}
+.verde{background:linear-gradient(135deg,var(--green),#16a34a)}
+.amarillo{background:linear-gradient(135deg,var(--gold),#eab308)}
+.rojo{background:linear-gradient(135deg,var(--red),#dc2626);color:white}
+.gris{background:#475569;color:white}
+.view{display:none}
+.view.active{display:block}
+.oculto{display:none!important}
+.item{background:#08111f;padding:12px;border-radius:14px;margin-bottom:10px;border-left:4px solid var(--blue)}
+.item.venta{border-left-color:var(--green)}
+.item.fondo{border-left-color:var(--gold)}
+.item.anulada{opacity:.65;border-left-color:var(--red)}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#243247;font-size:12px;margin-bottom:6px}
+.muted{color:var(--muted)}
+.ganancia{color:var(--green)}
+.perdida{color:var(--red)}
+.splitList{max-height:520px;overflow:auto;padding-right:4px}
+.miniActions{display:flex;gap:8px}
+.miniActions button{max-width:180px}
 #auth{max-width:420px;margin:10vh auto}
 .recibo{background:white;color:#111827;padding:18px;border-radius:10px;margin-top:12px;font-family:monospace;max-width:360px}
-.recibo h2,.recibo h3{text-align:center;margin:4px 0}.recibo hr{border:none;border-top:1px dashed #111827}.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
+.recibo h2,.recibo h3{text-align:center;margin:4px 0}
+.recibo hr{border:none;border-top:1px dashed #111827}
+.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
 .mobileNav{display:none}
+
 .heroDashboard{background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(250,204,21,.10),rgba(34,197,94,.08));border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:14px;display:grid;grid-template-columns:1.4fr .8fr;gap:14px;align-items:center}
 .heroDashboard h1{margin:0 0 6px;font-size:30px}
 .heroDashboard p{margin:0;color:var(--muted)}
@@ -67,12 +87,169 @@ button:hover{filter:brightness(1.05)}
 .statMini{background:#08111f;border:1px solid var(--line);border-radius:14px;padding:12px}
 .statMini span{color:var(--muted);font-size:12px}
 .statMini b{display:block;margin-top:6px;font-size:18px}
-@media(max-width:980px){.heroDashboard{grid-template-columns:1fr}.heroAmount{text-align:left}.actionGrid{grid-template-columns:1fr 1fr}.statLine{grid-template-columns:1fr}}
+
 @media(max-width:980px){
-  .layout{grid-template-columns:1fr}.sidebar{display:none}.main{padding:12px}.mobileNav{display:flex;gap:8px;overflow:auto;margin-bottom:12px}.mobileNav button{min-width:135px}
-  .metrics{grid-template-columns:1fr 1fr}.grid,.grid3{grid-template-columns:1fr}.topbar{height:auto;align-items:flex-start;gap:10px;flex-direction:column}
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .main{
+    padding:10px;
+    width:100%;
+  }
+
+  .mobileNav{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:8px 2px 12px;
+    margin-bottom:10px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(7,17,31,.95);
+    backdrop-filter:blur(10px);
+  }
+
+  .mobileNav button{
+    min-width:135px;
+    padding:11px;
+    font-size:13px;
+    white-space:nowrap;
+  }
+
+  .topbar{
+    height:auto;
+    align-items:flex-start;
+    gap:10px;
+    flex-direction:column;
+    border-radius:16px;
+  }
+
+  .topbar h2{
+    font-size:20px;
+  }
+
+  .userpill{
+    width:100%;
+    text-align:center;
+  }
+
+  .heroDashboard{
+    grid-template-columns:1fr;
+    padding:16px;
+    border-radius:18px;
+  }
+
+  .heroDashboard h1{
+    font-size:24px;
+  }
+
+  .heroAmount{
+    text-align:left;
+  }
+
+  .heroAmount h2{
+    font-size:26px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .metric{
+    min-height:88px;
+    padding:12px;
+  }
+
+  .metric h2{
+    font-size:20px;
+    word-break:break-word;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-bottom:12px;
+  }
+
+  .actionGrid{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .actionCard{
+    padding:13px;
+  }
+
+  .statLine{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:14px;
+    border-radius:16px;
+  }
+
+  input,select,button{
+    font-size:16px;
+    padding:13px;
+  }
+
+  .splitList{
+    max-height:none;
+    overflow:visible;
+  }
+
+  .item{
+    font-size:14px;
+    overflow-wrap:anywhere;
+  }
 }
-@media(max-width:560px){.metrics{grid-template-columns:1fr}.metric h2{font-size:22px}}
+
+@media(max-width:560px){
+  body{
+    font-size:14px;
+  }
+
+  #auth{
+    margin:30px 10px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr;
+  }
+
+  .actionGrid{
+    grid-template-columns:1fr;
+  }
+
+  .metric h2{
+    font-size:22px;
+  }
+
+  .heroDashboard h1{
+    font-size:22px;
+  }
+
+  .heroAmount h2{
+    font-size:24px;
+  }
+
+  .mobileNav button{
+    min-width:125px;
+    font-size:12px;
+  }
+
+  .recibo{
+    max-width:100%;
+  }
+}
 @media print{
   body *{visibility:hidden}
   #reciboActual,#reciboActual *{visibility:visible}
@@ -223,12 +400,42 @@ button:hover{filter:brightness(1.05)}
 
         <div class="grid">
           <div class="card">
-            <h3>👤 Crear Cajero</h3>
-            <input id="nuevoNombre" placeholder="Nombre del cajero">
+            <h3>👤 Crear Usuario</h3>
+            <input id="nuevoNombre" placeholder="Nombre del usuario">
             <input id="nuevoPassword" type="password" placeholder="Contraseña">
-            <button class="amarillo" onclick="crearCajero()">Crear Cajero</button>
+            <select id="nuevoRol">
+              <option value="cajero">Cajero</option>
+              <option value="admin">Administrador</option>
+            </select>
+            <button class="amarillo" onclick="crearCajero()">Crear Usuario</button>
           </div>
 
+       <div class="card">
+  <h3>🔐 Administración de Usuario</h3>
+
+  <select id="usuarioPassword">
+    <option value="">Seleccione usuario</option>
+  </select>
+
+  <input id="nuevaPassword" type="password" placeholder="Nueva contraseña">
+
+  <button class="amarillo" onclick="cambiarPassword()">
+    Cambiar Contraseña
+  </button>
+
+  <hr style="margin:15px 0;border-color:#243247;">
+
+  <select id="nuevoRolCambio">
+    <option value="cajero">Cajero</option>
+    <option value="admin">Administrador</option>
+  </select>
+
+  <button class="gris" onclick="cambiarRolUsuario()">
+    Cambiar Rol
+  </button>
+</div>
+
+        <div class="grid">
           <div class="card">
             <h3>💰 Asignar / Retirar Fondos</h3>
             <select id="cajeroSelectFondos"><option value="">Seleccione cajero</option></select>
@@ -237,11 +444,26 @@ button:hover{filter:brightness(1.05)}
             <select id="tipoFondos"><option value="asignar">Asignar al cajero</option><option value="retirar">Retirar del cajero</option></select>
             <button onclick="moverFondos()">Aplicar Movimiento</button>
           </div>
+
+          <div class="card">
+            <h3>👥 Usuarios</h3>
+            <button class="gris" onclick="cargarUsuarios()">Actualizar lista</button>
+            <div id="listaUsuarios" class="splitList">Sin usuarios</div>
+          </div>
         </div>
 
         <div class="grid">
-          <div class="card"><h3>👥 Usuarios</h3><button class="gris" onclick="cargarUsuarios()">Actualizar lista</button><div id="listaUsuarios" class="splitList">Sin usuarios</div></div>
-          <div class="card"><h3>📋 Historial de Fondos</h3><button class="gris" onclick="cargarHistorialFondos()">Actualizar historial</button><div id="historialFondos" class="splitList">Sin movimientos</div></div>
+          <div class="card">
+            <h3>📋 Historial de Fondos</h3>
+            <button class="gris" onclick="cargarHistorialFondos()">Actualizar historial</button>
+            <div id="historialFondos" class="splitList">Sin movimientos</div>
+          </div>
+
+          <div class="card">
+            <h3>💾 Respaldo / Exportación</h3>
+            <button onclick="descargarBackup()">Descargar Backup DB</button>
+            <button class="verde" onclick="exportarOperaciones()">Exportar Operaciones CSV</button>
+          </div>
         </div>
       </div>
     </section>
@@ -348,22 +570,82 @@ async function modificarUsdGeneral(){
 }
 
 async function crearCajero(){
-  const res=await fetch('/usuarios',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,nombre:nuevoNombre.value.trim(),password:nuevoPassword.value,rol:'cajero'})});
-  const data=await res.json();alert(data.mensaje||data.error);nuevoNombre.value='';nuevoPassword.value='';cargarUsuarios();
+  const res=await fetch('/usuarios',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      admin_id:user.id,
+      nombre:nuevoNombre.value.trim(),
+      password:nuevoPassword.value,
+      rol:nuevoRol.value
+    })
+  });
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+  nuevoNombre.value='';
+  nuevoPassword.value='';
+  nuevoRol.value='cajero';
+  cargarUsuarios();
 }
 
 async function cargarUsuarios(){
   const res=await fetch('/usuarios/'+user.id);
   const data=await res.json();
-  if(data.error)return listaUsuarios.innerHTML=data.error;
+  if(data.error){
+    listaUsuarios.innerHTML=data.error;
+    return;
+  }
+
   usuariosCache=data;
-  let html='', opciones='<option value="">Seleccione cajero</option>';
+  let html='';
+  let opciones='<option value="">Seleccione cajero</option>';
+  let passwordOptions='<option value="">Seleccione usuario</option>';
+
   data.forEach(u=>{
-    if(u.rol==='cajero') opciones+=`<option value="${u.id}">ID ${u.id} - ${u.nombre}</option>`;
-    html+=`<div class="item"><span class="tag">ID ${u.id}</span><br><b>Nombre:</b> ${u.nombre}<br><b>Rol:</b> ${u.rol}<br><b>DOP:</b> ${dinero(u.presupuesto_dop||0)}<br><b>USD:</b> ${numero(u.usd_disponibles||0)}<br><b>Activo:</b> ${u.activo?'Sí':'No'}</div>`;
+    passwordOptions+=`<option value="${u.id}">${u.nombre} (${u.rol})</option>`;
+
+    if(u.rol==='cajero'){
+      opciones+=`<option value="${u.id}">ID ${u.id} - ${u.nombre}</option>`;
+    }
+
+    const colorRol=u.rol==='admin'?'#facc15':'#38bdf8';
+
+    html+=`
+      <div class="item">
+        <span class="tag">ID ${u.id}</span><br>
+        <b>Nombre:</b> ${u.nombre}<br>
+        <b>Rol:</b> <span style="color:${colorRol};font-weight:bold;">${String(u.rol||'').toUpperCase()}</span><br>
+        <b>DOP:</b> ${dinero(u.presupuesto_dop||0)}<br>
+        <b>USD:</b> ${numero(u.usd_disponibles||0)}<br>
+        <b>Activo:</b> ${u.activo?'Sí':'No'}
+      </div>`;
   });
+
   listaUsuarios.innerHTML=html||'Sin usuarios';
   cajeroSelectFondos.innerHTML=opciones;
+
+  if(document.getElementById('usuarioPassword')){
+    usuarioPassword.innerHTML=passwordOptions;
+  }
+}
+
+async function cambiarPassword(){
+  if(!usuarioPassword.value)return alert("Seleccione un usuario");
+  if(!nuevaPassword.value)return alert("Digite una contraseña");
+
+  const res=await fetch("/cambiar-password",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      admin_id:user.id,
+      usuario_id:usuarioPassword.value,
+      nueva_password:nuevaPassword.value
+    })
+  });
+
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+  nuevaPassword.value="";
 }
 
 async function moverFondos(){
@@ -459,6 +741,39 @@ async function cargarHistorialFondos(){
     html+=`<div class="item fondo"><span class="tag">MOV-${String(m.id).padStart(6,'0')}</span><br><b>${String(m.tipo||'').toUpperCase()}</b> ${m.moneda||''}<br><b>Cajero:</b> ${m.cajero||'-'}<br><b>Admin:</b> ${m.admin||'-'}<br><b>Monto:</b> ${m.moneda==='USD'?numero(m.monto):dinero(m.monto)}<br><small>${m.fecha||''}</small></div>`;
   });
   historialFondos.innerHTML=html||'Sin movimientos de fondos';
+}
+
+function descargarBackup(){
+  if(!user)return;
+  window.location.href="/backup-db/"+user.id;
+}
+
+function exportarOperaciones(){
+  if(!user)return;
+  window.location.href="/exportar-operaciones/"+user.id;
+}
+async function cambiarRolUsuario(){
+  if(!usuarioPassword.value){
+    return alert("Seleccione un usuario");
+  }
+
+  const res = await fetch("/cambiar-rol", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      admin_id: user.id,
+      usuario_id: usuarioPassword.value,
+      nuevo_rol: nuevoRolCambio.value
+    })
+  });
+
+  const data = await res.json();
+
+  alert(data.mensaje || data.error);
+
+  cargarUsuarios();
 }
 </script>
 </body>
