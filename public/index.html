@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Divisas Pro</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
+    color:white;
+    margin:0;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.subtitulo{
+    color:#94a3b8;
+}
+
+.card{
+    background:rgba(30,41,59,0.95);
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.resumen{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.caja{
+    background:linear-gradient(135deg,#334155,#1e293b);
+    padding:18px;
+    border-radius:16px;
+    min-height:120px;
+}
+
+.caja h4{
+    margin:0 0 10px 0;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+.valor{
+    font-size:24px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    margin:7px 0;
+    border:none;
+    border-radius:12px;
+    background:#0f172a;
+    color:white;
+    outline:none;
+    border:1px solid #334155;
+}
+
+input:focus{
+    border-color:#38bdf8;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+    color:#020617;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.btn-vender{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.btn-crear{
+    background:linear-gradient(135deg,#facc15,#eab308);
+}
+
+.ganancia{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.perdida{
+    color:#ef4444;
+    font-weight:bold;
+}
+
+.historial-item{
+    background:#0f172a;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:10px;
+    border-left:4px solid #38bdf8;
+}
+
+.historial-item.venta{
+    border-left-color:#22c55e;
+}
+
+.historial-item.compra{
+    border-left-color:#38bdf8;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.badge-compra{
+    background:#0ea5e9;
+    color:#00111f;
+}
+
+.badge-venta{
+    background:#22c55e;
+    color:#001b0b;
+}
+
+.report-box{
+    background:#0f172a;
+    padding:10px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+.oculto{
+    display:none;
+}
+
+@media(max-width:850px){
+    .resumen{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+    .resumen{
+        grid-template-columns:1fr;
+    }
+
+    .header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <div>
+        <div class="logo">💵 Divisas Pro</div>
+        <div class="subtitulo">Control de compras, ventas y ganancias</div>
+    </div>
+</div>
+
+<div class="grid" id="auth">
+
+<div class="card">
+<h3>🔐 Login</h3>
+<input id="loginNombre" placeholder="Usuario">
+<input id="loginPassword" type="password" placeholder="Contraseña">
+<button onclick="login()">Entrar</button>
+</div>
+
+<div class="card">
+<h3>👤 Crear Usuario</h3>
+<input id="regNombre" placeholder="Usuario">
+<input id="regPassword" type="password" placeholder="Contraseña">
+<input id="regPresupuesto" type="number" placeholder="Presupuesto DOP">
+<button class="btn-crear" onclick="crearUsuario()">Crear Usuario</button>
+</div>
+
+</div>
+
+<div id="app" class="oculto">
+
+<div class="card">
+<h2>📊 Dashboard</h2>
+
+<div class="resumen">
+
+<div class="caja">
+<h4>Presupuesto DOP</h4>
+<div class="valor" id="presupuesto">RD$ 0</div>
+</div>
+
+<div class="caja">
+<h4>USD Disponibles</h4>
+<div class="valor" id="usd">0</div>
+</div>
+
+<div class="caja">
+<h4>Costo Promedio</h4>
+<div class="valor" id="costoPromedio">RD$ 0</div>
+</div>
+
+<div class="caja">
+<h4>Ganancia Total</h4>
+<div class="valor" id="gananciaTotal">RD$ 0</div>
+</div>
+
+</div>
+</div>
+
+<div class="card">
+<h2>📈 Reportes</h2>
+
+<div class="grid">
+
+<div>
+<h3>Ganancia por Día</h3>
+<div id="gananciaDia">Sin datos</div>
+</div>
+
+<div>
+<h3>Ganancia por Mes</h3>
+<div id="gananciaMes">Sin datos</div>
+</div>
+
+</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>🛒 Comprar USD</h3>
+<input id="compraUsd" type="number" placeholder="Cantidad USD">
+<input id="compraTasa" type="number" placeholder="Tasa de compra">
+<button onclick="comprarUSD()">Comprar USD</button>
+</div>
+
+<div class="card">
+<h3>💸 Vender USD</h3>
+<input id="ventaUsd" type="number" placeholder="Cantidad USD">
+<input id="ventaTasa" type="number" placeholder="Tasa de venta">
+<button class="btn-vender" onclick="venderUSD()">Vender USD</button>
+</div>
+
+</div>
+
+<div class="card">
+<h3>🧾 Historial de operaciones</h3>
+<div id="historial">Sin movimientos</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+let user = null;
+
+async function login(){
+    const nombre = document.getElementById("loginNombre").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const res = await fetch("/login", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ nombre, password })
+    });
+
+    const data = await res.json();
+
+    if(data.error){
+        alert(data.error);
+        return;
+    }
+
+    user = data;
+    document.getElementById("app").classList.remove("oculto");
+    document.getElementById("auth").classList.add("oculto");
+    render();
+}
+
+async function crearUsuario(){
+    const nombre = document.getElementById("regNombre").value;
+    const password = document.getElementById("regPassword").value;
+    const presupuesto = Number(document.getElementById("regPresupuesto").value);
+
+    const res = await fetch("/usuarios", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ nombre, password, presupuesto })
+    });
+
+    const data = await res.json();
+    alert(data.mensaje || data.error);
+}
+
+async function comprarUSD(){
+    const usd = Number(document.getElementById("compraUsd").value);
+    const tasa = Number(document.getElementById("compraTasa").value);
+
+    const res = await fetch("/comprar", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            usuario_id:user.id,
+            usd,
+            tasa
+        })
+    });
+
+    const data = await res.json();
+
+    if(data.error){
+        alert(data.error);
+        return;
+    }
+
+    alert(data.mensaje || "Compra realizada correctamente");
+
+    document.getElementById("compraUsd").value = "";
+    document.getElementById("compraTasa").value = "";
+
+    actualizarUsuario();
+}
+
+async function venderUSD(){
+    const usd = Number(document.getElementById("ventaUsd").value);
+    const tasa = Number(document.getElementById("ventaTasa").value);
+
+    const res = await fetch("/vender", {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({
+            usuario_id:user.id,
+            usd,
+            tasa
+        })
+    });
+
+    const data = await res.json();
+
+    if(data.error){
+        alert(data.error);
+        return;
+    }
+
+    alert(
+        (data.mensaje || "Venta realizada correctamente") +
+        "\nGanancia: RD$ " + Number(data.ganancia || 0).toFixed(2)
+    );
+
+    document.getElementById("ventaUsd").value = "";
+    document.getElementById("ventaTasa").value = "";
+
+    actualizarUsuario();
+}
+
+async function actualizarUsuario(){
+    const res = await fetch("/usuarios/" + user.id);
+    user = await res.json();
+    render();
+}
+
+async function cargarHistorial(){
+    const res = await fetch("/historial/" + user.id);
+    const movimientos = await res.json();
+
+    let html = "";
+
+    movimientos.forEach(m => {
+        const ganancia = Number(m.ganancia || 0);
+        const clase = ganancia >= 0 ? "ganancia" : "perdida";
+        const tipoClase = m.tipo === "VENTA" ? "venta" : "compra";
+        const badgeClase = m.tipo === "VENTA" ? "badge-venta" : "badge-compra";
+
+        html += `
+        <div class="historial-item ${tipoClase}">
+            <span class="badge ${badgeClase}">${m.tipo}</span><br>
+            <b>USD:</b> ${Number(m.usd).toFixed(2)}<br>
+            <b>Tasa:</b> RD$ ${Number(m.tasa).toFixed(2)}<br>
+            <b>Monto:</b> RD$ ${Number(m.monto_dop).toLocaleString()}<br>
+            <b>Ganancia:</b> <span class="${clase}">RD$ ${ganancia.toFixed(2)}</span><br>
+            <small>${m.fecha}</small>
+        </div>
+        `;
+    });
+
+    document.getElementById("historial").innerHTML = html || "Sin movimientos";
+}
+
+async function cargarReportes(){
+    const res = await fetch("/reportes/" + user.id);
+    const data = await res.json();
+
+    if(data.error){
+        document.getElementById("gananciaDia").innerHTML = data.error;
+        document.getElementById("gananciaMes").innerHTML = data.error;
+        return;
+    }
+
+    let htmlDia = "";
+
+    data.gananciasDia.forEach(r => {
+        htmlDia += `
+        <div class="report-box">
+            <b>${r.dia}</b><br>
+            <span class="ganancia">RD$ ${Number(r.ganancia_dia || 0).toFixed(2)}</span>
+        </div>
+        `;
+    });
+
+    let htmlMes = "";
+
+    data.gananciasMes.forEach(r => {
+        htmlMes += `
+        <div class="report-box">
+            <b>${r.mes}</b><br>
+            <span class="ganancia">RD$ ${Number(r.ganancia_mes || 0).toFixed(2)}</span>
+        </div>
+        `;
+    });
+
+    document.getElementById("gananciaDia").innerHTML = htmlDia || "Sin datos";
+    document.getElementById("gananciaMes").innerHTML = htmlMes || "Sin datos";
+}
+
+function render(){
+    document.getElementById("presupuesto").innerHTML =
+        "RD$ " + Number(user.presupuesto_dop || 0).toLocaleString();
+
+    document.getElementById("usd").innerHTML =
+        Number(user.usd_disponibles || 0).toFixed(2);
+
+    document.getElementById("costoPromedio").innerHTML =
+        "RD$ " + Number(user.costo_promedio || 0).toFixed(2);
+
+    document.getElementById("gananciaTotal").innerHTML =
+        '<span class="ganancia">RD$ ' +
+        Number(user.ganancia_total || 0).toFixed(2) +
+        '</span>';
+
+    cargarHistorial();
+    cargarReportes();
+}
+</script>
+
+</body>
+</html>
