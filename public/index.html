@@ -3,495 +3,474 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control de Divisas Pro</title>
-
+<title>Divisas Pro Compact</title>
 <style>
-*{
-    box-sizing:border-box;
+*{box-sizing:border-box}
+:root{
+  --bg:#07111f;
+  --panel:#0f172a;
+  --card:#111c31;
+  --card2:#17243a;
+  --line:rgba(255,255,255,.08);
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --blue:#38bdf8;
+  --green:#22c55e;
+  --gold:#facc15;
+  --red:#ef4444;
 }
-
-body{
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#020617,#0f172a,#1e293b);
-    color:white;
-    margin:0;
+body{margin:0;font-family:Arial,sans-serif;background:radial-gradient(circle at top left,#14345c,#07111f 45%,#020617);color:var(--text)}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{background:rgba(2,6,23,.75);border-right:1px solid var(--line);padding:18px;position:sticky;top:0;height:100vh}
+.brand{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.logoBox{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--blue),#0ea5e9);display:flex;align-items:center;justify-content:center;font-size:22px}
+.brand h1{font-size:21px;margin:0}
+.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.nav button{display:flex;align-items:center;gap:10px;width:100%;margin:7px 0;padding:13px;border-radius:14px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:bold;cursor:pointer;text-align:left}
+.nav button:hover,.nav button.active{background:rgba(56,189,248,.13);border-color:rgba(56,189,248,.28);color:white}
+.sidebarFooter{position:absolute;left:18px;right:18px;bottom:18px;color:var(--muted);font-size:12px}
+.main{padding:18px;max-width:1400px;width:100%;margin:0 auto}
+.topbar{height:64px;background:rgba(15,23,42,.78);border:1px solid var(--line);border-radius:20px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;backdrop-filter:blur(10px)}
+.topbar h2{margin:0;font-size:22px}.userpill{background:#17243a;border:1px solid var(--line);padding:9px 12px;border-radius:999px;color:var(--muted)}
+.card{background:rgba(17,28,49,.92);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 30px rgba(0,0,0,.22)}
+.card h3{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.metric{background:linear-gradient(135deg,#17243a,#0f172a);border:1px solid var(--line);border-radius:18px;padding:14px;min-height:98px}
+.metric span{font-size:13px;color:var(--muted)}.metric h2{margin:10px 0 0;font-size:24px}.metric.green h2{color:var(--green)}.metric.gold h2{color:var(--gold)}
+input,select{width:100%;padding:12px;margin:6px 0;border-radius:12px;background:#08111f;color:white;border:1px solid #243247;outline:none}
+input:focus,select:focus{border-color:var(--blue)}input[readonly]{background:#111827;color:var(--gold);font-weight:bold}
+button{width:100%;padding:12px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--blue),#0ea5e9);color:#020617;font-weight:bold;margin-top:8px;cursor:pointer}
+button:hover{filter:brightness(1.05)}
+.verde{background:linear-gradient(135deg,var(--green),#16a34a)}.amarillo{background:linear-gradient(135deg,var(--gold),#eab308)}.rojo{background:linear-gradient(135deg,var(--red),#dc2626);color:white}.gris{background:#475569;color:white}
+.view{display:none}.view.active{display:block}.oculto{display:none!important}
+.item{background:#08111f;padding:12px;border-radius:14px;margin-bottom:10px;border-left:4px solid var(--blue)}.item.venta{border-left-color:var(--green)}.item.fondo{border-left-color:var(--gold)}.item.anulada{opacity:.65;border-left-color:var(--red)}
+.tag{display:inline-block;padding:4px 10px;border-radius:999px;background:#243247;font-size:12px;margin-bottom:6px}.muted{color:var(--muted)}.ganancia{color:var(--green)}.perdida{color:var(--red)}
+.splitList{max-height:520px;overflow:auto;padding-right:4px}.miniActions{display:flex;gap:8px}.miniActions button{max-width:180px}
+#auth{max-width:420px;margin:10vh auto}
+.recibo{background:white;color:#111827;padding:18px;border-radius:10px;margin-top:12px;font-family:monospace;max-width:360px}
+.recibo h2,.recibo h3{text-align:center;margin:4px 0}.recibo hr{border:none;border-top:1px dashed #111827}.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
+.mobileNav{display:none}
+@media(max-width:980px){
+  .layout{grid-template-columns:1fr}.sidebar{display:none}.main{padding:12px}.mobileNav{display:flex;gap:8px;overflow:auto;margin-bottom:12px}.mobileNav button{min-width:135px}
+  .metrics{grid-template-columns:1fr 1fr}.grid,.grid3{grid-template-columns:1fr}.topbar{height:auto;align-items:flex-start;gap:10px;flex-direction:column}
 }
-
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
-
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
-
-.subtitulo{
-    color:#94a3b8;
-}
-
-.card{
-    background:rgba(30,41,59,0.95);
-    padding:18px;
-    border-radius:18px;
-    margin-bottom:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
-    border:1px solid rgba(255,255,255,0.05);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-
-.resumen{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.caja{
-    background:linear-gradient(135deg,#334155,#1e293b);
-    padding:18px;
-    border-radius:16px;
-    min-height:120px;
-}
-
-.caja h4{
-    margin:0 0 10px 0;
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-.valor{
-    font-size:24px;
-    font-weight:bold;
-}
-
-input{
-    width:100%;
-    padding:13px;
-    margin:7px 0;
-    border:none;
-    border-radius:12px;
-    background:#0f172a;
-    color:white;
-    outline:none;
-    border:1px solid #334155;
-}
-
-input:focus{
-    border-color:#38bdf8;
-}
-
-button{
-    width:100%;
-    padding:13px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(135deg,#38bdf8,#0ea5e9);
-    color:#020617;
-    cursor:pointer;
-    font-weight:bold;
-    margin-top:8px;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-.btn-vender{
-    background:linear-gradient(135deg,#22c55e,#16a34a);
-}
-
-.btn-crear{
-    background:linear-gradient(135deg,#facc15,#eab308);
-}
-
-.ganancia{
-    color:#22c55e;
-    font-weight:bold;
-}
-
-.perdida{
-    color:#ef4444;
-    font-weight:bold;
-}
-
-.historial-item{
-    background:#0f172a;
-    padding:12px;
-    border-radius:12px;
-    margin-bottom:10px;
-    border-left:4px solid #38bdf8;
-}
-
-.historial-item.venta{
-    border-left-color:#22c55e;
-}
-
-.historial-item.compra{
-    border-left-color:#38bdf8;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.badge-compra{
-    background:#0ea5e9;
-    color:#00111f;
-}
-
-.badge-venta{
-    background:#22c55e;
-    color:#001b0b;
-}
-
-.report-box{
-    background:#0f172a;
-    padding:10px;
-    border-radius:12px;
-    margin-bottom:10px;
-}
-
-.oculto{
-    display:none;
-}
-
-@media(max-width:850px){
-    .resumen{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .grid{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:550px){
-    .resumen{
-        grid-template-columns:1fr;
-    }
-
-    .header{
-        flex-direction:column;
-        align-items:flex-start;
-    }
+@media(max-width:560px){.metrics{grid-template-columns:1fr}.metric h2{font-size:22px}}
+@media print{
+  body *{visibility:hidden}
+  #reciboActual,#reciboActual *{visibility:visible}
+  #reciboActual{position:absolute;left:0;top:0;width:80mm;max-width:80mm;border-radius:0}
+  .no-print{display:none!important}
 }
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<div id="auth" class="card">
+  <div class="brand">
+    <div class="logoBox">💵</div>
+    <div><h1>Divisas Pro</h1><p>Sistema de cambio</p></div>
+  </div>
+  <h2>🔐 Iniciar sesión</h2>
+  <input id="loginNombre" placeholder="Usuario">
+  <input id="loginPassword" type="password" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+  <p class="muted">Admin inicial: admin / admin123</p>
+</div>
 
-<div class="header">
-    <div>
-        <div class="logo">💵 Divisas Pro</div>
-        <div class="subtitulo">Control de compras, ventas y ganancias</div>
+<div id="app" class="layout oculto">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logoBox">💵</div>
+      <div><h1>Divisas Pro</h1><p>Panel financiero</p></div>
     </div>
-</div>
+    <div class="nav">
+      <button class="active" onclick="showView('dashboard',this)">📊 Dashboard</button>
+      <button onclick="showView('operaciones',this)">💱 Operaciones</button>
+      <button id="navAdmin" onclick="showView('cajeros',this)">👥 Cajeros</button>
+      <button onclick="showView('historialView',this)">🧾 Historial</button>
+      <button onclick="showView('reciboView',this)">🖨️ Recibo</button>
+    </div>
+    <div class="sidebarFooter">
+      <div id="sideUser">Usuario</div>
+      <button class="rojo" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </aside>
 
-<div class="grid" id="auth">
+  <main class="main">
+    <div class="mobileNav">
+      <button onclick="showView('dashboard')">📊 Dashboard</button>
+      <button onclick="showView('operaciones')">💱 Operaciones</button>
+      <button id="mobileAdmin" onclick="showView('cajeros')">👥 Cajeros</button>
+      <button onclick="showView('historialView')">🧾 Historial</button>
+      <button onclick="showView('reciboView')">🖨️ Recibo</button>
+    </div>
 
-<div class="card">
-<h3>🔐 Login</h3>
-<input id="loginNombre" placeholder="Usuario">
-<input id="loginPassword" type="password" placeholder="Contraseña">
-<button onclick="login()">Entrar</button>
-</div>
+    <div class="topbar">
+      <div><h2 id="bienvenida">Dashboard</h2><div class="muted">Resumen y control operativo</div></div>
+      <div class="userpill" id="userPill">-</div>
+    </div>
 
-<div class="card">
-<h3>👤 Crear Usuario</h3>
-<input id="regNombre" placeholder="Usuario">
-<input id="regPassword" type="password" placeholder="Contraseña">
-<input id="regPresupuesto" type="number" placeholder="Presupuesto DOP">
-<button class="btn-crear" onclick="crearUsuario()">Crear Usuario</button>
-</div>
+    <section id="dashboard" class="view active">
+      <div class="metrics">
+        <div class="metric"><span>Presupuesto DOP</span><h2 id="presupuesto">RD$ 0</h2></div>
+        <div class="metric"><span>USD Disponibles</span><h2 id="usd">0.00</h2></div>
+        <div class="metric gold"><span>Promedio Compra USD</span><h2 id="costoPromedio">RD$ 0.00</h2></div>
+        <div class="metric"><span>Rol</span><h2 id="rol">-</h2></div>
+    <div class="metric green soloAdmin"><span>Ganancia Hoy</span><h2 id="gananciaHoy">RD$ 0.00</h2></div>
+<div class="metric green soloAdmin"><span>Ganancia Mes</span><h2 id="gananciaMes">RD$ 0.00</h2></div>
+<div class="metric green soloAdmin"><span>Ganancia Total</span><h2 id="gananciaTotal">RD$ 0.00</h2></div>
+        <div class="metric"><span>Estado</span><h2>Activo</h2></div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>📌 Atajos</h3><button onclick="showView('operaciones')">Registrar compra / venta</button><button class="gris" onclick="showView('historialView')">Ver historial</button></div>
+        <div class="card"><h3>📊 Referencia</h3><p class="muted">El promedio de compra sirve como referencia interna para calcular ganancia automática en ventas.</p><p><b>Inventario valorizado:</b> <span id="valorInventario">RD$ 0.00</span></p></div>
+      </div>
+    </section>
 
-</div>
+    <section id="operaciones" class="view">
+      <div class="grid">
+        <div class="card">
+          <h3>🛒 Comprar USD</h3>
+          <p class="muted">El cliente te vende USD. Tú pagas en DOP.</p>
+          <input id="clienteCompra" placeholder="Nombre del cliente">
+          <input id="documentoCompra" placeholder="Cédula o pasaporte">
+          <input id="compraUsd" type="number" placeholder="Cantidad USD a comprar" oninput="calcularCompra()">
+          <input id="compraTasa" type="number" placeholder="Tasa de compra" oninput="calcularCompra()">
+          <input id="compraDop" type="number" placeholder="Total DOP a pagar" readonly>
+          <button onclick="comprarUSD()">Registrar Compra</button>
+        </div>
 
-<div id="app" class="oculto">
+        <div class="card">
+          <h3>💸 Vender USD</h3>
+          <p class="muted">Tú vendes USD al cliente. El cliente paga en DOP.</p>
+          <input id="clienteVenta" placeholder="Nombre del cliente">
+          <input id="documentoVenta" placeholder="Cédula o pasaporte">
+          <input id="ventaUsd" type="number" placeholder="Cantidad USD a vender" oninput="calcularVenta()">
+          <input id="ventaTasa" type="number" placeholder="Tasa de venta" oninput="calcularVenta()">
+          <input id="ventaDop" type="number" placeholder="Total DOP a recibir" readonly>
+          <button class="verde" onclick="venderUSD()">Registrar Venta</button>
+        </div>
+      </div>
+    </section>
 
-<div class="card">
-<h2>📊 Dashboard</h2>
+    <section id="cajeros" class="view">
+      <div id="adminPanel">
+        <div class="grid">
+          <div class="card">
+            <h3>🏦 Presupuesto General DOP</h3>
+            <input id="montoGeneral" type="number" placeholder="Monto RD$">
+            <select id="tipoGeneral"><option value="agregar">Agregar</option><option value="reducir">Reducir</option></select>
+            <button class="amarillo" onclick="modificarPresupuestoGeneral()">Aplicar DOP</button>
+          </div>
+          <div class="card">
+            <h3>💵 Inventario General USD</h3>
+            <input id="montoUsdGeneral" type="number" placeholder="Monto USD">
+            <select id="tipoUsdGeneral"><option value="agregar">Agregar</option><option value="reducir">Reducir</option></select>
+            <button class="amarillo" onclick="modificarUsdGeneral()">Aplicar USD</button>
+          </div>
+        </div>
 
-<div class="resumen">
+        <div class="grid">
+          <div class="card">
+            <h3>👤 Crear Cajero</h3>
+            <input id="nuevoNombre" placeholder="Nombre del cajero">
+            <input id="nuevoPassword" type="password" placeholder="Contraseña">
+            <select id="nuevoRol">
+  <option value="cajero">Cajero</option>
+  <option value="admin">Administrador</option>
+</select>
+            <button class="amarillo" onclick="crearCajero()">Crear Cajero</button>
+          </div>
 
-<div class="caja">
-<h4>Presupuesto DOP</h4>
-<div class="valor" id="presupuesto">RD$ 0</div>
-</div>
+          <div class="card">
+            <h3>💰 Asignar / Retirar Fondos</h3>
+            <select id="cajeroSelectFondos"><option value="">Seleccione cajero</option></select>
+            <input id="montoFondos" type="number" placeholder="Monto">
+            <select id="monedaFondos"><option value="DOP">DOP</option><option value="USD">USD</option></select>
+            <select id="tipoFondos"><option value="asignar">Asignar al cajero</option><option value="retirar">Retirar del cajero</option></select>
+            <button onclick="moverFondos()">Aplicar Movimiento</button>
+          </div>
+        </div>
 
-<div class="caja">
-<h4>USD Disponibles</h4>
-<div class="valor" id="usd">0</div>
-</div>
+        <div class="grid">
+          <div class="card"><h3>👥 Usuarios</h3><button class="gris" onclick="cargarUsuarios()">Actualizar lista</button><div id="listaUsuarios" class="splitList">Sin usuarios</div></div>
+          <div class="card"><h3>📋 Historial de Fondos</h3><button class="gris" onclick="cargarHistorialFondos()">Actualizar historial</button><div id="historialFondos" class="splitList">Sin movimientos</div></div>
+        </div>
+      </div>
+    </section>
 
-<div class="caja">
-<h4>Costo Promedio</h4>
-<div class="valor" id="costoPromedio">RD$ 0</div>
-</div>
+    <section id="historialView" class="view">
+      <div class="card">
+        <div class="miniActions"><button class="gris" onclick="cargarHistorial()">Actualizar historial</button></div>
+        <h3>🧾 Historial de operaciones</h3>
+        <div id="historial" class="splitList">Sin movimientos</div>
+      </div>
+    </section>
 
-<div class="caja">
-<h4>Ganancia Total</h4>
-<div class="valor" id="gananciaTotal">RD$ 0</div>
-</div>
-
-</div>
-</div>
-
-<div class="card">
-<h2>📈 Reportes</h2>
-
-<div class="grid">
-
-<div>
-<h3>Ganancia por Día</h3>
-<div id="gananciaDia">Sin datos</div>
-</div>
-
-<div>
-<h3>Ganancia por Mes</h3>
-<div id="gananciaMes">Sin datos</div>
-</div>
-
-</div>
-</div>
-
-<div class="grid">
-
-<div class="card">
-<h3>🛒 Comprar USD</h3>
-<input id="compraUsd" type="number" placeholder="Cantidad USD">
-<input id="compraTasa" type="number" placeholder="Tasa de compra">
-<button onclick="comprarUSD()">Comprar USD</button>
-</div>
-
-<div class="card">
-<h3>💸 Vender USD</h3>
-<input id="ventaUsd" type="number" placeholder="Cantidad USD">
-<input id="ventaTasa" type="number" placeholder="Tasa de venta">
-<button class="btn-vender" onclick="venderUSD()">Vender USD</button>
-</div>
-
-</div>
-
-<div class="card">
-<h3>🧾 Historial de operaciones</h3>
-<div id="historial">Sin movimientos</div>
-</div>
-
-</div>
-
+    <section id="reciboView" class="view">
+      <div class="card"><h3>🖨️ Último Recibo</h3><div id="reciboContenedor" class="muted">Aquí aparecerá el último recibo generado.</div></div>
+    </section>
+  </main>
 </div>
 
 <script>
-let user = null;
+let user=null;
+let usuariosCache=[];
+let ultimoReciboNombre="recibo.html";
+
+function dinero(n){return 'RD$ '+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+function numero(n){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+
+function showView(id,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
 
 async function login(){
-    const nombre = document.getElementById("loginNombre").value;
-    const password = document.getElementById("loginPassword").value;
-
-    const res = await fetch("/login", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ nombre, password })
-    });
-
-    const data = await res.json();
-
-    if(data.error){
-        alert(data.error);
-        return;
-    }
-
-    user = data;
-    document.getElementById("app").classList.remove("oculto");
-    document.getElementById("auth").classList.add("oculto");
-    render();
+  const nombre=loginNombre.value.trim();
+  const password=loginPassword.value;
+  const res=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre,password})});
+  const data=await res.json();
+  if(data.error)return alert(data.error);
+  user=data;
+  auth.classList.add('oculto');
+  app.classList.remove('oculto');
+  navAdmin.style.display=user.rol==='admin'?'flex':'none';
+  mobileAdmin.style.display=user.rol==='admin'?'block':'none';
+  sideUser.innerHTML=`${user.nombre}<br>${user.rol}`;
+  userPill.innerHTML=`${user.nombre} · ${user.rol}`;
+  render();
+  if(user.rol==='admin'){cargarUsuarios();cargarHistorialFondos();}
 }
 
-async function crearUsuario(){
-    const nombre = document.getElementById("regNombre").value;
-    const password = document.getElementById("regPassword").value;
-    const presupuesto = Number(document.getElementById("regPresupuesto").value);
-
-    const res = await fetch("/usuarios", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({ nombre, password, presupuesto })
-    });
-
-    const data = await res.json();
-    alert(data.mensaje || data.error);
-}
-
-async function comprarUSD(){
-    const usd = Number(document.getElementById("compraUsd").value);
-    const tasa = Number(document.getElementById("compraTasa").value);
-
-    const res = await fetch("/comprar", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            usuario_id:user.id,
-            usd,
-            tasa
-        })
-    });
-
-    const data = await res.json();
-
-    if(data.error){
-        alert(data.error);
-        return;
-    }
-
-    alert(data.mensaje || "Compra realizada correctamente");
-
-    document.getElementById("compraUsd").value = "";
-    document.getElementById("compraTasa").value = "";
-
-    actualizarUsuario();
-}
-
-async function venderUSD(){
-    const usd = Number(document.getElementById("ventaUsd").value);
-    const tasa = Number(document.getElementById("ventaTasa").value);
-
-    const res = await fetch("/vender", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
-        body:JSON.stringify({
-            usuario_id:user.id,
-            usd,
-            tasa
-        })
-    });
-
-    const data = await res.json();
-
-    if(data.error){
-        alert(data.error);
-        return;
-    }
-
-    alert(
-        (data.mensaje || "Venta realizada correctamente") +
-        "\nGanancia: RD$ " + Number(data.ganancia || 0).toFixed(2)
-    );
-
-    document.getElementById("ventaUsd").value = "";
-    document.getElementById("ventaTasa").value = "";
-
-    actualizarUsuario();
-}
-
-async function actualizarUsuario(){
-    const res = await fetch("/usuarios/" + user.id);
-    user = await res.json();
-    render();
-}
-
-async function cargarHistorial(){
-    const res = await fetch("/historial/" + user.id);
-    const movimientos = await res.json();
-
-    let html = "";
-
-    movimientos.forEach(m => {
-        const ganancia = Number(m.ganancia || 0);
-        const clase = ganancia >= 0 ? "ganancia" : "perdida";
-        const tipoClase = m.tipo === "VENTA" ? "venta" : "compra";
-        const badgeClase = m.tipo === "VENTA" ? "badge-venta" : "badge-compra";
-
-        html += `
-        <div class="historial-item ${tipoClase}">
-            <span class="badge ${badgeClase}">${m.tipo}</span><br>
-            <b>USD:</b> ${Number(m.usd).toFixed(2)}<br>
-            <b>Tasa:</b> RD$ ${Number(m.tasa).toFixed(2)}<br>
-            <b>Monto:</b> RD$ ${Number(m.monto_dop).toLocaleString()}<br>
-            <b>Ganancia:</b> <span class="${clase}">RD$ ${ganancia.toFixed(2)}</span><br>
-            <small>${m.fecha}</small>
-        </div>
-        `;
-    });
-
-    document.getElementById("historial").innerHTML = html || "Sin movimientos";
-}
-
-async function cargarReportes(){
-    const res = await fetch("/reportes/" + user.id);
-    const data = await res.json();
-
-    if(data.error){
-        document.getElementById("gananciaDia").innerHTML = data.error;
-        document.getElementById("gananciaMes").innerHTML = data.error;
-        return;
-    }
-
-    let htmlDia = "";
-
-    data.gananciasDia.forEach(r => {
-        htmlDia += `
-        <div class="report-box">
-            <b>${r.dia}</b><br>
-            <span class="ganancia">RD$ ${Number(r.ganancia_dia || 0).toFixed(2)}</span>
-        </div>
-        `;
-    });
-
-    let htmlMes = "";
-
-    data.gananciasMes.forEach(r => {
-        htmlMes += `
-        <div class="report-box">
-            <b>${r.mes}</b><br>
-            <span class="ganancia">RD$ ${Number(r.ganancia_mes || 0).toFixed(2)}</span>
-        </div>
-        `;
-    });
-
-    document.getElementById("gananciaDia").innerHTML = htmlDia || "Sin datos";
-    document.getElementById("gananciaMes").innerHTML = htmlMes || "Sin datos";
+function logout(){
+  user=null;
+  app.classList.add('oculto');
+  auth.classList.remove('oculto');
+  loginPassword.value='';
 }
 
 function render(){
-    document.getElementById("presupuesto").innerHTML =
-        "RD$ " + Number(user.presupuesto_dop || 0).toLocaleString();
+  bienvenida.innerHTML='📊 Bienvenido, '+user.nombre;
+  presupuesto.innerHTML=dinero(user.presupuesto_dop||0);
+  usd.innerHTML=numero(user.usd_disponibles||0);
+  costoPromedio.innerHTML=dinero(user.costo_promedio||0);
+  rol.innerHTML=user.rol;
+  document.querySelectorAll('.soloAdmin').forEach(e=>{
+  e.style.display = user.rol === 'admin' ? 'block' : 'none';
+});
+  valorInventario.innerHTML=dinero(Number(user.usd_disponibles||0)*Number(user.costo_promedio||0));
+  cargarHistorial();
+  cargarGanancias();
+}
 
-    document.getElementById("usd").innerHTML =
-        Number(user.usd_disponibles || 0).toFixed(2);
+async function actualizarBalance(){
+  const res=await fetch('/balance/'+user.id);
+  const data=await res.json();
+  if(data.error)return alert(data.error);
+  user=data;
+  render();
+  if(user.rol==='admin') cargarUsuarios();
+}
 
-    document.getElementById("costoPromedio").innerHTML =
-        "RD$ " + Number(user.costo_promedio || 0).toFixed(2);
+async function cargarGanancias(){
+  if(!user)return;
+  const res=await fetch('/reportes-ganancia/'+user.id);
+  const data=await res.json();
+  if(data.error)return;
+  costoPromedio.innerHTML=dinero(data.costo_promedio||0);
+  gananciaHoy.innerHTML=dinero(data.ganancia_hoy||0);
+  gananciaMes.innerHTML=dinero(data.ganancia_mes||0);
+  gananciaTotal.innerHTML=dinero(data.ganancia_total||0);
+}
 
-    document.getElementById("gananciaTotal").innerHTML =
-        '<span class="ganancia">RD$ ' +
-        Number(user.ganancia_total || 0).toFixed(2) +
-        '</span>';
+function calcularCompra(){const u=Number(compraUsd.value),t=Number(compraTasa.value);compraDop.value=(u&&t)?(u*t).toFixed(2):'';}
+function calcularVenta(){const u=Number(ventaUsd.value),t=Number(ventaTasa.value);ventaDop.value=(u&&t)?(u*t).toFixed(2):'';}
 
-    cargarHistorial();
-    cargarReportes();
+async function modificarPresupuestoGeneral(){
+  const res=await fetch('/admin/presupuesto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,tipo:tipoGeneral.value,monto:Number(montoGeneral.value)})});
+  const data=await res.json();alert(data.mensaje||data.error);montoGeneral.value='';actualizarBalance();
+}
+
+async function modificarUsdGeneral(){
+  const res=await fetch('/admin/usd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,tipo:tipoUsdGeneral.value,monto:Number(montoUsdGeneral.value)})});
+  const data=await res.json();alert(data.mensaje||data.error);montoUsdGeneral.value='';actualizarBalance();
+}
+
+async function crearCajero(){
+  const res = await fetch('/usuarios', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      admin_id: user.id,
+      nombre: nuevoNombre.value.trim(),
+      password: nuevoPassword.value,
+      rol: nuevoRol.value
+    })
+  });
+
+  const data = await res.json();
+
+  alert(data.mensaje || data.error);
+
+  nuevoNombre.value = '';
+  nuevoPassword.value = '';
+  nuevoRol.value = 'cajero';
+
+  cargarUsuarios();
+}
+
+async function cargarUsuarios(){
+  const res = await fetch('/usuarios/' + user.id);
+  const data = await res.json();
+
+  if(data.error){
+    listaUsuarios.innerHTML = data.error;
+    return;
+  }
+
+  usuariosCache = data;
+
+  let html = '';
+  let opciones = '<option value="">Seleccione cajero</option>';
+
+  data.forEach(u => {
+
+    if(u.rol === 'cajero'){
+      opciones += `<option value="${u.id}">
+        ID ${u.id} - ${u.nombre}
+      </option>`;
+    }
+
+    const colorRol =
+      u.rol === 'admin'
+        ? '#facc15'
+        : '#38bdf8';
+
+    html += `
+      <div class="item">
+        <span class="tag">ID ${u.id}</span><br>
+
+        <b>Nombre:</b> ${u.nombre}<br>
+
+        <b>Rol:</b>
+        <span style="color:${colorRol};font-weight:bold;">
+          ${u.rol.toUpperCase()}
+        </span><br>
+
+        <b>DOP:</b> ${dinero(u.presupuesto_dop || 0)}<br>
+
+        <b>USD:</b> ${numero(u.usd_disponibles || 0)}<br>
+
+        <b>Activo:</b> ${u.activo ? 'Sí' : 'No'}
+      </div>
+    `;
+  });
+
+  listaUsuarios.innerHTML = html || 'Sin usuarios';
+  cajeroSelectFondos.innerHTML = opciones;
+}
+
+async function moverFondos(){
+  if(!cajeroSelectFondos.value)return alert('Selecciona un cajero');
+  const res=await fetch('/fondos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,cajero_id:Number(cajeroSelectFondos.value),tipo:tipoFondos.value,moneda:monedaFondos.value,monto:Number(montoFondos.value)})});
+  const data=await res.json();alert(data.mensaje||data.error);montoFondos.value='';cargarUsuarios();cargarHistorialFondos();actualizarBalance();
+}
+
+async function comprarUSD(){
+  calcularCompra();
+  const usd=Number(compraUsd.value), tasa=Number(compraTasa.value), dop=Number(compraDop.value), cliente=clienteCompra.value.trim(), documento=documentoCompra.value.trim();
+  const res=await fetch('/compra',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usuario_id:user.id,cliente_nombre:cliente,cliente_documento:documento,monto_dop:dop,tasa:tasa})});
+  const data=await res.json();if(data.error)return alert(data.error);
+  alert('Compra registrada. USD comprados: '+numero(data.usd)+'\nTotal pagado: '+dinero(dop));
+  generarRecibo({tipo:'COMPRA',cliente,documento,usd:data.usd,tasa,total:dop});
+  clienteCompra.value='';documentoCompra.value='';compraUsd.value='';compraTasa.value='';compraDop.value='';
+  actualizarBalance();showView('reciboView');
+}
+
+async function venderUSD(){
+  calcularVenta();
+  const usd=Number(ventaUsd.value), tasa=Number(ventaTasa.value), dop=Number(ventaDop.value), cliente=clienteVenta.value.trim(), documento=documentoVenta.value.trim();
+  const res=await fetch('/venta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usuario_id:user.id,cliente_nombre:cliente,cliente_documento:documento,monto_usd:usd,tasa:tasa})});
+  const data=await res.json();if(data.error)return alert(data.error);
+  alert('Venta registrada. DOP recibidos: '+dinero(data.dop)+'\nGanancia interna: '+dinero(data.ganancia||0));
+  generarRecibo({tipo:'VENTA',cliente,documento,usd,tasa,total:data.dop});
+  clienteVenta.value='';documentoVenta.value='';ventaUsd.value='';ventaTasa.value='';ventaDop.value='';
+  actualizarBalance();showView('reciboView');
+}
+
+function generarRecibo(op){
+  const fecha=new Date().toLocaleString();
+  const opNum='OP-'+String(Date.now()).slice(-6);
+  ultimoReciboNombre=opNum+'-'+op.tipo.toLowerCase()+'.html';
+  reciboContenedor.innerHTML=`
+  <div id="reciboActual" class="recibo">
+    <h2>DIVISAS PRO</h2><h3>Casa de Cambio</h3><hr>
+    <div class="recibo-row"><b>Operación:</b><span>${opNum}</span></div>
+    <div class="recibo-row"><b>Fecha:</b><span>${fecha}</span></div>
+    <div class="recibo-row"><b>Tipo:</b><span>${op.tipo} USD</span></div>
+    <div class="recibo-row"><b>Cajero:</b><span>${user.nombre}</span></div><hr>
+    <div><b>Cliente:</b><br>${op.cliente||'-'}</div>
+    <div><b>Documento:</b><br>${op.documento||'-'}</div><hr>
+    <div class="recibo-row"><b>USD:</b><span>${numero(op.usd)}</span></div>
+    <div class="recibo-row"><b>Tasa:</b><span>RD$ ${Number(op.tasa||0).toFixed(2)}</span></div>
+    <div class="recibo-row"><b>Total DOP:</b><span>${dinero(op.total)}</span></div><hr>
+    <h3>Gracias por preferirnos</h3>
+    <button class="no-print" onclick="window.print()">🖨️ Imprimir Recibo</button>
+    <button class="no-print" onclick="descargarRecibo()">📄 Descargar Recibo</button>
+  </div>`;
+}
+
+function descargarRecibo(){
+  const recibo=document.getElementById('reciboActual');
+  if(!recibo)return alert('No hay recibo para descargar');
+  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${ultimoReciboNombre}</title><style>body{font-family:monospace;padding:20px;color:#111827}.recibo{max-width:80mm;margin:auto;border:1px dashed #111827;padding:15px}h2,h3{text-align:center;margin:4px 0}hr{border:none;border-top:1px dashed #111827}.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}button{display:none}</style></head><body>${recibo.outerHTML}</body></html>`;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=ultimoReciboNombre;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
+
+async function cargarHistorial(){
+  if(!user)return;
+  const res=await fetch('/historial/'+user.id);
+  const data=await res.json();
+  if(data.error)return historial.innerHTML=data.error;
+  let html='';
+  data.forEach(m=>{
+    const venta=m.tipo==='venta';
+    const anulada=Number(m.anulada||0)===1;
+    const btnAnular=(user.rol==='admin'&&!anulada)?`<button class="rojo" onclick="anularTransaccion(${m.id})">Anular operación</button>`:'';
+    html+=`<div class="item ${venta?'venta':''} ${anulada?'anulada':''}"><span class="tag">OP-${String(m.id).padStart(6,'0')}</span><br><b>${String(m.tipo||'').toUpperCase()}</b> ${anulada?'<span class="tag" style="background:#ef4444;color:white">ANULADA</span>':''}<br><b>Cliente:</b> ${m.cliente_nombre||'-'}<br><b>Documento:</b> ${m.cliente_documento||'-'}<br><b>USD:</b> ${numero(m.monto_usd||0)}<br><b>Tasa:</b> RD$ ${Number(m.tasa||0).toFixed(2)}<br><b>Total DOP:</b> ${dinero(m.monto_dop||0)}<br>${venta?`<b>Ganancia:</b> <span class="${Number(m.ganancia||0)>=0?'ganancia':'perdida'}">${dinero(m.ganancia||0)}</span><br>`:''}${anulada?`<b>Motivo:</b> ${m.motivo_anulacion||'-'}<br><b>Fecha anulación:</b> ${m.fecha_anulacion||'-'}<br>`:''}<small>${m.fecha||''}</small>${btnAnular}</div>`;
+  });
+  historial.innerHTML=html||'Sin movimientos';
+}
+
+async function anularTransaccion(id){
+  if(user.rol!=='admin')return alert('Solo admin puede anular operaciones');
+  const motivo=prompt('Motivo de anulación:');
+  if(motivo===null)return;
+  if(!motivo.trim())return alert('Debes escribir un motivo');
+  if(!confirm('¿Seguro que deseas anular esta operación? Se revertirá el balance.'))return;
+  const res=await fetch('/transacciones/'+id+'/anular',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,motivo:motivo.trim()})});
+  const data=await res.json();alert(data.mensaje||data.error);
+  if(!data.error){actualizarBalance();cargarHistorial();if(user.rol==='admin')cargarUsuarios();}
+}
+
+async function cargarHistorialFondos(){
+  if(!user||user.rol!=='admin')return;
+  const res=await fetch('/historial-fondos/'+user.id);
+  const data=await res.json();
+  if(data.error)return historialFondos.innerHTML=data.error;
+  let html='';
+  data.forEach(m=>{
+    html+=`<div class="item fondo"><span class="tag">MOV-${String(m.id).padStart(6,'0')}</span><br><b>${String(m.tipo||'').toUpperCase()}</b> ${m.moneda||''}<br><b>Cajero:</b> ${m.cajero||'-'}<br><b>Admin:</b> ${m.admin||'-'}<br><b>Monto:</b> ${m.moneda==='USD'?numero(m.monto):dinero(m.monto)}<br><small>${m.fecha||''}</small></div>`;
+  });
+  historialFondos.innerHTML=html||'Sin movimientos de fondos';
 }
 </script>
-
 </body>
 </html>
