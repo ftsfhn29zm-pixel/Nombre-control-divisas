@@ -629,7 +629,10 @@ app.post("/transacciones/:id/anular", (req, res) => {
       }
 
       db.run(updateUsuario, valores, (err) => {
-        if (err) return res.status(500).json({ error: "Error revirtiendo balance" });
+     if (err) {
+  console.log("ERROR ANULAR BALANCE:", err.message);
+  return res.status(500).json({ error: "Error revirtiendo balance: " + err.message });
+}
 
         db.run(
           `UPDATE transacciones
@@ -640,7 +643,10 @@ app.post("/transacciones/:id/anular", (req, res) => {
            WHERE id = ?`,
           [motivo || "Sin motivo", admin_id, transaccion_id],
           (err) => {
-            if (err) return res.status(500).json({ error: "Error anulando transacción" });
+            if (err) {
+  console.log("ERROR ANULAR TRANSACCION:", err.message);
+  return res.status(500).json({ error: "Error anulando transacción: " + err.message });
+}
 
             res.json({ mensaje: "Transacción anulada correctamente" });
           }
