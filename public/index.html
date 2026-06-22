@@ -188,9 +188,22 @@ button:hover{filter:brightness(1.05)}
           <p>Resumen financiero en tiempo real de Divisas Pro</p>
         </div>
         <div class="heroAmount">
-          <span>Presupuesto DOP</span>
-          <h2 id="presupuestoHero">RD$ 0.00</h2>
-        </div>
+  <span>Presupuesto DOP</span>
+  <h2 id="presupuestoHero">RD$ 0.00</h2>
+
+  <hr style="border-color:rgba(255,255,255,.12);margin:12px 0;">
+
+  <div style="display:flex;justify-content:space-between;gap:12px;">
+    <div>
+      <span>USD disponibles</span>
+      <h2 id="usdHero" style="font-size:22px;color:#38bdf8;">0.00</h2>
+    </div>
+    <div>
+      <span>EUR disponibles</span>
+      <h2 id="eurHero" style="font-size:22px;color:#22c55e;">0.00</h2>
+    </div>
+  </div>
+</div>
       </div>
 
       <div class="metrics">
@@ -541,7 +554,9 @@ function render(){
 
   presupuesto.innerHTML=dinero(dop);
   presupuestoHero.innerHTML=dinero(dop);
-
+  
+usdHero.innerHTML=numero(usd);
+eurHero.innerHTML=numero(eur);
   document.getElementById('usd').innerHTML=numero(usd);
   document.getElementById('eur').innerHTML=numero(eur);
 
