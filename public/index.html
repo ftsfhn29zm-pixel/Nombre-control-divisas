@@ -89,166 +89,40 @@ button:hover{filter:brightness(1.05)}
 .statMini b{display:block;margin-top:6px;font-size:18px}
 
 @media(max-width:980px){
-  .layout{
-    display:block;
-  }
-
-  .sidebar{
-    display:none;
-  }
-
-  .main{
-    padding:10px;
-    width:100%;
-  }
-
-  .mobileNav{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    padding:8px 2px 12px;
-    margin-bottom:10px;
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:rgba(7,17,31,.95);
-    backdrop-filter:blur(10px);
-  }
-
-  .mobileNav button{
-    min-width:135px;
-    padding:11px;
-    font-size:13px;
-    white-space:nowrap;
-  }
-
-  .topbar{
-    height:auto;
-    align-items:flex-start;
-    gap:10px;
-    flex-direction:column;
-    border-radius:16px;
-  }
-
-  .topbar h2{
-    font-size:20px;
-  }
-
-  .userpill{
-    width:100%;
-    text-align:center;
-  }
-
-  .heroDashboard{
-    grid-template-columns:1fr;
-    padding:16px;
-    border-radius:18px;
-  }
-
-  .heroDashboard h1{
-    font-size:24px;
-  }
-
-  .heroAmount{
-    text-align:left;
-  }
-
-  .heroAmount h2{
-    font-size:26px;
-  }
-
-  .metrics{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .metric{
-    min-height:88px;
-    padding:12px;
-  }
-
-  .metric h2{
-    font-size:20px;
-    word-break:break-word;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-    gap:12px;
-    margin-bottom:12px;
-  }
-
-  .actionGrid{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .actionCard{
-    padding:13px;
-  }
-
-  .statLine{
-    grid-template-columns:1fr;
-  }
-
-  .card{
-    padding:14px;
-    border-radius:16px;
-  }
-
-  input,select,button{
-    font-size:16px;
-    padding:13px;
-  }
-
-  .splitList{
-    max-height:none;
-    overflow:visible;
-  }
-
-  .item{
-    font-size:14px;
-    overflow-wrap:anywhere;
-  }
+  .layout{display:block}
+  .sidebar{display:none}
+  .main{padding:10px;width:100%}
+  .mobileNav{display:flex;gap:8px;overflow-x:auto;padding:8px 2px 12px;margin-bottom:10px;position:sticky;top:0;z-index:50;background:rgba(7,17,31,.95);backdrop-filter:blur(10px)}
+  .mobileNav button{min-width:135px;padding:11px;font-size:13px;white-space:nowrap}
+  .topbar{height:auto;align-items:flex-start;gap:10px;flex-direction:column;border-radius:16px}
+  .topbar h2{font-size:20px}
+  .userpill{width:100%;text-align:center}
+  .heroDashboard{grid-template-columns:1fr;padding:16px;border-radius:18px}
+  .heroDashboard h1{font-size:24px}
+  .heroAmount{text-align:left}
+  .heroAmount h2{font-size:26px}
+  .metrics{grid-template-columns:1fr 1fr;gap:10px}
+  .metric{min-height:88px;padding:12px}
+  .metric h2{font-size:20px;word-break:break-word}
+  .grid{grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+  .actionGrid{grid-template-columns:1fr 1fr;gap:10px}
+  .actionCard{padding:13px}
+  .statLine{grid-template-columns:1fr}
+  .card{padding:14px;border-radius:16px}
+  input,select,button{font-size:16px;padding:13px}
+  .splitList{max-height:none;overflow:visible}
+  .item{font-size:14px;overflow-wrap:anywhere}
 }
-
 @media(max-width:560px){
-  body{
-    font-size:14px;
-  }
-
-  #auth{
-    margin:30px 10px;
-  }
-
-  .metrics{
-    grid-template-columns:1fr;
-  }
-
-  .actionGrid{
-    grid-template-columns:1fr;
-  }
-
-  .metric h2{
-    font-size:22px;
-  }
-
-  .heroDashboard h1{
-    font-size:22px;
-  }
-
-  .heroAmount h2{
-    font-size:24px;
-  }
-
-  .mobileNav button{
-    min-width:125px;
-    font-size:12px;
-  }
-
-  .recibo{
-    max-width:100%;
-  }
+  body{font-size:14px}
+  #auth{margin:30px 10px}
+  .metrics{grid-template-columns:1fr}
+  .actionGrid{grid-template-columns:1fr}
+  .metric h2{font-size:22px}
+  .heroDashboard h1{font-size:22px}
+  .heroAmount h2{font-size:24px}
+  .mobileNav button{min-width:125px;font-size:12px}
+  .recibo{max-width:100%}
 }
 @media print{
   body *{visibility:hidden}
@@ -271,7 +145,6 @@ button:hover{filter:brightness(1.05)}
   <button onclick="login()">Entrar</button>
   <p class="muted">Admin inicial: admin / admin123</p>
 </div>
-
 <div id="app" class="layout oculto">
   <aside class="sidebar">
     <div class="brand">
@@ -301,7 +174,10 @@ button:hover{filter:brightness(1.05)}
     </div>
 
     <div class="topbar">
-      <div><h2 id="bienvenida">Dashboard</h2><div class="muted">Resumen y control operativo</div></div>
+      <div>
+        <h2 id="bienvenida">Dashboard</h2>
+        <div class="muted">Resumen y control operativo</div>
+      </div>
       <div class="userpill" id="userPill">-</div>
     </div>
 
@@ -318,32 +194,99 @@ button:hover{filter:brightness(1.05)}
       </div>
 
       <div class="metrics">
-        <div class="metric"><span>💰 Presupuesto DOP</span><h2 id="presupuesto">RD$ 0</h2></div>
-        <div class="metric"><span>💵 USD Disponibles</span><h2 id="usd">0.00</h2></div>
-        <div class="metric gold"><span>📈 Promedio Compra USD</span><h2 id="costoPromedio">RD$ 0.00</h2></div>
-        <div class="metric"><span>👤 Rol</span><h2 id="rol">-</h2></div>
-        <div class="metric green soloAdmin"><span>🟢 Ganancia Hoy</span><h2 id="gananciaHoy">RD$ 0.00</h2></div>
-        <div class="metric green soloAdmin"><span>📅 Ganancia Mes</span><h2 id="gananciaMes">RD$ 0.00</h2></div>
-        <div class="metric green soloAdmin"><span>🏆 Ganancia Total</span><h2 id="gananciaTotal">RD$ 0.00</h2></div>
-        <div class="metric"><span>✅ Estado</span><h2>Activo</h2></div>
+        <div class="metric">
+          <span>💰 Presupuesto DOP</span>
+          <h2 id="presupuesto">RD$ 0</h2>
+        </div>
+
+        <div class="metric">
+          <span>💵 USD Disponibles</span>
+          <h2 id="usd">0.00</h2>
+        </div>
+
+        <div class="metric">
+          <span>💶 EUR Disponibles</span>
+          <h2 id="eur">0.00</h2>
+        </div>
+
+        <div class="metric">
+          <span>👤 Rol</span>
+          <h2 id="rol">-</h2>
+        </div>
+
+        <div class="metric gold">
+          <span>📈 Promedio Compra USD</span>
+          <h2 id="costoPromedioUsd">RD$ 0.00</h2>
+        </div>
+
+        <div class="metric gold">
+          <span>📈 Promedio Compra EUR</span>
+          <h2 id="costoPromedioEur">RD$ 0.00</h2>
+        </div>
+
+        <div class="metric green soloAdmin">
+          <span>🟢 Ganancia Hoy</span>
+          <h2 id="gananciaHoy">RD$ 0.00</h2>
+        </div>
+
+        <div class="metric green soloAdmin">
+          <span>📅 Ganancia Mes</span>
+          <h2 id="gananciaMes">RD$ 0.00</h2>
+        </div>
+
+        <div class="metric green soloAdmin">
+          <span>🏆 Ganancia Total</span>
+          <h2 id="gananciaTotal">RD$ 0.00</h2>
+        </div>
+
+        <div class="metric">
+          <span>✅ Estado</span>
+          <h2>Activo</h2>
+        </div>
       </div>
 
       <div class="actionGrid">
-        <div class="actionCard" onclick="showView('operaciones')"><b>🛒 Comprar USD</b><span>Registrar compra rápida</span></div>
-        <div class="actionCard" onclick="showView('operaciones')"><b>💸 Vender USD</b><span>Registrar venta rápida</span></div>
-        <div class="actionCard" onclick="showView('historialView')"><b>🧾 Historial</b><span>Ver operaciones</span></div>
-        <div class="actionCard soloAdmin" onclick="showView('cajeros')"><b>👥 Cajeros</b><span>Fondos y usuarios</span></div>
+        <div class="actionCard" onclick="showView('operaciones')">
+          <b>🛒 Comprar Divisa</b>
+          <span>USD o EUR</span>
+        </div>
+
+        <div class="actionCard" onclick="showView('operaciones')">
+          <b>💸 Vender Divisa</b>
+          <span>USD o EUR</span>
+        </div>
+
+        <div class="actionCard" onclick="showView('historialView')">
+          <b>🧾 Historial</b>
+          <span>Ver operaciones</span>
+        </div>
+
+        <div class="actionCard soloAdmin" onclick="showView('cajeros')">
+          <b>👥 Cajeros</b>
+          <span>Fondos y usuarios</span>
+        </div>
       </div>
 
       <div class="grid">
         <div class="card">
           <h3>📊 Referencia Operativa</h3>
           <div class="statLine">
-            <div class="statMini"><span>Inventario valorizado</span><b id="valorInventario">RD$ 0.00</b></div>
-            <div class="statMini"><span>Promedio compra</span><b id="promedioMini">RD$ 0.00</b></div>
-            <div class="statMini"><span>USD en caja</span><b id="usdMini">0.00</b></div>
+            <div class="statMini">
+              <span>Valor inventario USD</span>
+              <b id="valorInventarioUsd">RD$ 0.00</b>
+            </div>
+
+            <div class="statMini">
+              <span>Valor inventario EUR</span>
+              <b id="valorInventarioEur">RD$ 0.00</b>
+            </div>
+
+            <div class="statMini">
+              <span>Inventario total estimado</span>
+              <b id="valorInventarioTotal">RD$ 0.00</b>
+            </div>
           </div>
-          <p class="muted">El promedio de compra se usa como referencia interna para calcular la ganancia automática en ventas.</p>
+          <p class="muted">Los promedios de compra se usan como referencia interna para calcular la ganancia automática en ventas.</p>
         </div>
 
         <div class="card">
@@ -354,29 +297,40 @@ button:hover{filter:brightness(1.05)}
         </div>
       </div>
     </section>
-
-    <section id="operaciones" class="view">
+        <section id="operaciones" class="view">
       <div class="grid">
         <div class="card">
-          <h3>🛒 Comprar USD</h3>
-          <p class="muted">El cliente te vende USD. Tú pagas en DOP.</p>
+          <h3>🛒 Comprar Divisa</h3>
+          <p class="muted">El cliente te vende USD o EUR. Tú pagas en DOP.</p>
+
+          <select id="monedaCompra" onchange="calcularCompra()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+
           <input id="clienteCompra" placeholder="Nombre del cliente">
           <input id="documentoCompra" placeholder="Cédula o pasaporte">
-          <input id="compraUsd" type="number" placeholder="Cantidad USD a comprar" oninput="calcularCompra()">
+          <input id="compraCantidad" type="number" placeholder="Cantidad a comprar" oninput="calcularCompra()">
           <input id="compraTasa" type="number" placeholder="Tasa de compra" oninput="calcularCompra()">
           <input id="compraDop" type="number" placeholder="Total DOP a pagar" readonly>
-          <button onclick="comprarUSD()">Registrar Compra</button>
+          <button onclick="comprarDivisa()">Registrar Compra</button>
         </div>
 
         <div class="card">
-          <h3>💸 Vender USD</h3>
-          <p class="muted">Tú vendes USD al cliente. El cliente paga en DOP.</p>
+          <h3>💸 Vender Divisa</h3>
+          <p class="muted">Tú vendes USD o EUR al cliente. El cliente paga en DOP.</p>
+
+          <select id="monedaVenta" onchange="calcularVenta()">
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+          </select>
+
           <input id="clienteVenta" placeholder="Nombre del cliente">
           <input id="documentoVenta" placeholder="Cédula o pasaporte">
-          <input id="ventaUsd" type="number" placeholder="Cantidad USD a vender" oninput="calcularVenta()">
+          <input id="ventaCantidad" type="number" placeholder="Cantidad a vender" oninput="calcularVenta()">
           <input id="ventaTasa" type="number" placeholder="Tasa de venta" oninput="calcularVenta()">
           <input id="ventaDop" type="number" placeholder="Total DOP a recibir" readonly>
-          <button class="verde" onclick="venderUSD()">Registrar Venta</button>
+          <button class="verde" onclick="venderDivisa()">Registrar Venta</button>
         </div>
       </div>
     </section>
@@ -387,18 +341,35 @@ button:hover{filter:brightness(1.05)}
           <div class="card">
             <h3>🏦 Presupuesto General DOP</h3>
             <input id="montoGeneral" type="number" placeholder="Monto RD$">
-            <select id="tipoGeneral"><option value="agregar">Agregar</option><option value="reducir">Reducir</option></select>
+            <select id="tipoGeneral">
+              <option value="agregar">Agregar</option>
+              <option value="reducir">Reducir</option>
+            </select>
             <button class="amarillo" onclick="modificarPresupuestoGeneral()">Aplicar DOP</button>
           </div>
+
           <div class="card">
             <h3>💵 Inventario General USD</h3>
             <input id="montoUsdGeneral" type="number" placeholder="Monto USD">
-            <select id="tipoUsdGeneral"><option value="agregar">Agregar</option><option value="reducir">Reducir</option></select>
+            <select id="tipoUsdGeneral">
+              <option value="agregar">Agregar</option>
+              <option value="reducir">Reducir</option>
+            </select>
             <button class="amarillo" onclick="modificarUsdGeneral()">Aplicar USD</button>
           </div>
         </div>
 
         <div class="grid">
+          <div class="card">
+            <h3>💶 Inventario General EUR</h3>
+            <input id="montoEurGeneral" type="number" placeholder="Monto EUR">
+            <select id="tipoEurGeneral">
+              <option value="agregar">Agregar</option>
+              <option value="reducir">Reducir</option>
+            </select>
+            <button class="amarillo" onclick="modificarEurGeneral()">Aplicar EUR</button>
+          </div>
+
           <div class="card">
             <h3>👤 Crear Usuario</h3>
             <input id="nuevoNombre" placeholder="Nombre del usuario">
@@ -409,86 +380,109 @@ button:hover{filter:brightness(1.05)}
             </select>
             <button class="amarillo" onclick="crearCajero()">Crear Usuario</button>
           </div>
-
-       <div class="card">
-  <h3>🔐 Administración de Usuario</h3>
-
-  <select id="usuarioPassword">
-    <option value="">Seleccione usuario</option>
-  </select>
-
-  <input id="nuevaPassword" type="password" placeholder="Nueva contraseña">
-
-  <button class="amarillo" onclick="cambiarPassword()">
-    Cambiar Contraseña
-  </button>
-
-  <hr style="margin:15px 0;border-color:#243247;">
-
-  <select id="nuevoRolCambio">
-    <option value="cajero">Cajero</option>
-    <option value="admin">Administrador</option>
-  </select>
-
-  <button class="gris" onclick="cambiarRolUsuario()">
-    Cambiar Rol
-  </button>
-</div>
+        </div>
 
         <div class="grid">
           <div class="card">
-            <h3>💰 Asignar / Retirar Fondos</h3>
-            <select id="cajeroSelectFondos"><option value="">Seleccione cajero</option></select>
-            <input id="montoFondos" type="number" placeholder="Monto">
-            <select id="monedaFondos"><option value="DOP">DOP</option><option value="USD">USD</option></select>
-            <select id="tipoFondos"><option value="asignar">Asignar al cajero</option><option value="retirar">Retirar del cajero</option></select>
-            <button onclick="moverFondos()">Aplicar Movimiento</button>
+            <h3>🔐 Administración de Usuario</h3>
+
+            <select id="usuarioPassword">
+              <option value="">Seleccione usuario</option>
+            </select>
+
+            <input id="nuevaPassword" type="password" placeholder="Nueva contraseña">
+
+            <button class="amarillo" onclick="cambiarPassword()">
+              Cambiar Contraseña
+            </button>
+
+            <hr style="margin:15px 0;border-color:#243247;">
+
+            <select id="nuevoRolCambio">
+              <option value="cajero">Cajero</option>
+              <option value="admin">Administrador</option>
+            </select>
+
+            <button class="gris" onclick="cambiarRolUsuario()">
+              Cambiar Rol
+            </button>
           </div>
 
           <div class="card">
-            <h3>👥 Usuarios</h3>
-            <button class="gris" onclick="cargarUsuarios()">Actualizar lista</button>
-            <div id="listaUsuarios" class="splitList">Sin usuarios</div>
+            <h3>💰 Asignar / Retirar Fondos</h3>
+            <select id="cajeroSelectFondos">
+              <option value="">Seleccione cajero</option>
+            </select>
+
+            <input id="montoFondos" type="number" placeholder="Monto">
+
+            <select id="monedaFondos">
+              <option value="DOP">DOP</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+
+            <select id="tipoFondos">
+              <option value="asignar">Asignar al cajero</option>
+              <option value="retirar">Retirar del cajero</option>
+            </select>
+
+            <button onclick="moverFondos()">Aplicar Movimiento</button>
           </div>
         </div>
 
         <div class="grid">
           <div class="card">
+            <h3>👥 Usuarios</h3>
+            <button class="gris" onclick="cargarUsuarios()">Actualizar lista</button>
+            <div id="listaUsuarios" class="splitList">Sin usuarios</div>
+          </div>
+
+          <div class="card">
             <h3>📋 Historial de Fondos</h3>
             <button class="gris" onclick="cargarHistorialFondos()">Actualizar historial</button>
             <div id="historialFondos" class="splitList">Sin movimientos</div>
           </div>
+        </div>
 
-          <div class="card">
-            <h3>💾 Respaldo / Exportación</h3>
-            <button onclick="descargarBackup()">Descargar Backup DB</button>
-            <button class="verde" onclick="exportarOperaciones()">Exportar Operaciones CSV</button>
-          </div>
+        <div class="card">
+          <h3>💾 Respaldo / Exportación</h3>
+          <button onclick="descargarBackup()">Descargar Backup DB</button>
+          <button class="verde" onclick="exportarOperaciones()">Exportar Operaciones CSV</button>
         </div>
       </div>
     </section>
 
     <section id="historialView" class="view">
       <div class="card">
-        <div class="miniActions"><button class="gris" onclick="cargarHistorial()">Actualizar historial</button></div>
+        <div class="miniActions">
+          <button class="gris" onclick="cargarHistorial()">Actualizar historial</button>
+        </div>
         <h3>🧾 Historial de operaciones</h3>
         <div id="historial" class="splitList">Sin movimientos</div>
       </div>
     </section>
 
     <section id="reciboView" class="view">
-      <div class="card"><h3>🖨️ Último Recibo</h3><div id="reciboContenedor" class="muted">Aquí aparecerá el último recibo generado.</div></div>
+      <div class="card">
+        <h3>🖨️ Último Recibo</h3>
+        <div id="reciboContenedor" class="muted">Aquí aparecerá el último recibo generado.</div>
+      </div>
     </section>
   </main>
 </div>
-
 <script>
 let user=null;
 let usuariosCache=[];
 let ultimoReciboNombre="recibo.html";
 
-function dinero(n){return 'RD$ '+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
-function numero(n){return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});}
+function dinero(n){
+  return 'RD$ '+Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+
+function numero(n){
+  return Number(n||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+}
 
 function showView(id,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -500,18 +494,32 @@ function showView(id,btn){
 async function login(){
   const nombre=loginNombre.value.trim();
   const password=loginPassword.value;
-  const res=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nombre,password})});
+
+  const res=await fetch('/login',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({nombre,password})
+  });
+
   const data=await res.json();
   if(data.error)return alert(data.error);
+
   user=data;
   auth.classList.add('oculto');
   app.classList.remove('oculto');
+
   navAdmin.style.display=user.rol==='admin'?'flex':'none';
   mobileAdmin.style.display=user.rol==='admin'?'block':'none';
+
   sideUser.innerHTML=`${user.nombre}<br>${user.rol}`;
   userPill.innerHTML=`${user.nombre} · ${user.rol}`;
+
   render();
-  if(user.rol==='admin'){cargarUsuarios();cargarHistorialFondos();}
+
+  if(user.rol==='admin'){
+    cargarUsuarios();
+    cargarHistorialFondos();
+  }
 }
 
 function logout(){
@@ -523,15 +531,36 @@ function logout(){
 
 function render(){
   bienvenida.innerHTML='📊 Bienvenido, '+user.nombre;
-  presupuesto.innerHTML=dinero(user.presupuesto_dop||0);
-  if(document.getElementById('presupuestoHero')) presupuestoHero.innerHTML=dinero(user.presupuesto_dop||0);
-  usd.innerHTML=numero(user.usd_disponibles||0);
-  costoPromedio.innerHTML=dinero(user.costo_promedio||0);
-  if(document.getElementById('promedioMini')) promedioMini.innerHTML=dinero(user.costo_promedio||0);
-  if(document.getElementById('usdMini')) usdMini.innerHTML=numero(user.usd_disponibles||0);
+
+  const dop=Number(user.presupuesto_dop||0);
+  const usd=Number(user.usd_disponibles||0);
+  const eur=Number(user.eur_disponibles||0);
+
+  const costoUsd=Number(user.costo_promedio_usd||user.costo_promedio||0);
+  const costoEur=Number(user.costo_promedio_eur||0);
+
+  presupuesto.innerHTML=dinero(dop);
+  presupuestoHero.innerHTML=dinero(dop);
+
+  document.getElementById('usd').innerHTML=numero(usd);
+  document.getElementById('eur').innerHTML=numero(eur);
+
+  costoPromedioUsd.innerHTML=dinero(costoUsd);
+  costoPromedioEur.innerHTML=dinero(costoEur);
+
   rol.innerHTML=user.rol;
-  valorInventario.innerHTML=dinero(Number(user.usd_disponibles||0)*Number(user.costo_promedio||0));
-  document.querySelectorAll('.soloAdmin').forEach(e=>{e.style.display=user.rol==='admin'?'block':'none';});
+
+  const valorUsd=usd*costoUsd;
+  const valorEur=eur*costoEur;
+
+  valorInventarioUsd.innerHTML=dinero(valorUsd);
+  valorInventarioEur.innerHTML=dinero(valorEur);
+  valorInventarioTotal.innerHTML=dinero(valorUsd+valorEur);
+
+  document.querySelectorAll('.soloAdmin').forEach(e=>{
+    e.style.display=user.rol==='admin'?'block':'none';
+  });
+
   cargarHistorial();
   cargarGanancias();
 }
@@ -540,33 +569,95 @@ async function actualizarBalance(){
   const res=await fetch('/balance/'+user.id);
   const data=await res.json();
   if(data.error)return alert(data.error);
+
   user=data;
   render();
-  if(user.rol==='admin') cargarUsuarios();
+
+  if(user.rol==='admin')cargarUsuarios();
 }
 
 async function cargarGanancias(){
   if(!user)return;
+
   const res=await fetch('/reportes-ganancia/'+user.id);
   const data=await res.json();
+
   if(data.error)return;
-  costoPromedio.innerHTML=dinero(data.costo_promedio||0);
+
   gananciaHoy.innerHTML=dinero(data.ganancia_hoy||0);
   gananciaMes.innerHTML=dinero(data.ganancia_mes||0);
   gananciaTotal.innerHTML=dinero(data.ganancia_total||0);
+
+  if(data.costo_promedio_usd!==undefined){
+    costoPromedioUsd.innerHTML=dinero(data.costo_promedio_usd||0);
+  }
+
+  if(data.costo_promedio_eur!==undefined){
+    costoPromedioEur.innerHTML=dinero(data.costo_promedio_eur||0);
+  }
 }
 
-function calcularCompra(){const u=Number(compraUsd.value),t=Number(compraTasa.value);compraDop.value=(u&&t)?(u*t).toFixed(2):'';}
-function calcularVenta(){const u=Number(ventaUsd.value),t=Number(ventaTasa.value);ventaDop.value=(u&&t)?(u*t).toFixed(2):'';}
+function calcularCompra(){
+  const cantidad=Number(compraCantidad.value);
+  const tasa=Number(compraTasa.value);
+  compraDop.value=(cantidad&&tasa)?(cantidad*tasa).toFixed(2):'';
+}
+
+function calcularVenta(){
+  const cantidad=Number(ventaCantidad.value);
+  const tasa=Number(ventaTasa.value);
+  ventaDop.value=(cantidad&&tasa)?(cantidad*tasa).toFixed(2):'';
+}
 
 async function modificarPresupuestoGeneral(){
-  const res=await fetch('/admin/presupuesto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,tipo:tipoGeneral.value,monto:Number(montoGeneral.value)})});
-  const data=await res.json();alert(data.mensaje||data.error);montoGeneral.value='';actualizarBalance();
+  const res=await fetch('/admin/presupuesto',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      admin_id:user.id,
+      tipo:tipoGeneral.value,
+      monto:Number(montoGeneral.value)
+    })
+  });
+
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+  montoGeneral.value='';
+  actualizarBalance();
 }
 
 async function modificarUsdGeneral(){
-  const res=await fetch('/admin/usd',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,tipo:tipoUsdGeneral.value,monto:Number(montoUsdGeneral.value)})});
-  const data=await res.json();alert(data.mensaje||data.error);montoUsdGeneral.value='';actualizarBalance();
+  const res=await fetch('/admin/usd',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      admin_id:user.id,
+      tipo:tipoUsdGeneral.value,
+      monto:Number(montoUsdGeneral.value)
+    })
+  });
+
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+  montoUsdGeneral.value='';
+  actualizarBalance();
+}
+
+async function modificarEurGeneral(){
+  const res=await fetch('/admin/eur',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      admin_id:user.id,
+      tipo:tipoEurGeneral.value,
+      monto:Number(montoEurGeneral.value)
+    })
+  });
+
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+  montoEurGeneral.value='';
+  actualizarBalance();
 }
 
 async function crearCajero(){
@@ -580,23 +671,28 @@ async function crearCajero(){
       rol:nuevoRol.value
     })
   });
+
   const data=await res.json();
   alert(data.mensaje||data.error);
+
   nuevoNombre.value='';
   nuevoPassword.value='';
   nuevoRol.value='cajero';
+
   cargarUsuarios();
 }
 
 async function cargarUsuarios(){
   const res=await fetch('/usuarios/'+user.id);
   const data=await res.json();
+
   if(data.error){
     listaUsuarios.innerHTML=data.error;
     return;
   }
 
   usuariosCache=data;
+
   let html='';
   let opciones='<option value="">Seleccione cajero</option>';
   let passwordOptions='<option value="">Seleccione usuario</option>';
@@ -617,6 +713,7 @@ async function cargarUsuarios(){
         <b>Rol:</b> <span style="color:${colorRol};font-weight:bold;">${String(u.rol||'').toUpperCase()}</span><br>
         <b>DOP:</b> ${dinero(u.presupuesto_dop||0)}<br>
         <b>USD:</b> ${numero(u.usd_disponibles||0)}<br>
+        <b>EUR:</b> ${numero(u.eur_disponibles||0)}<br>
         <b>Activo:</b> ${u.activo?'Sí':'No'}
       </div>`;
   });
@@ -669,54 +766,142 @@ async function moverFondos(){
   if(data.error)return;
 
   montoFondos.value='';
-
-  const balanceRes=await fetch('/balance/'+user.id);
-  user=await balanceRes.json();
-
-  render();
+  actualizarBalance();
   cargarUsuarios();
   cargarHistorialFondos();
 }
 
-async function comprarUSD(){
+async function comprarDivisa(){
   calcularCompra();
-  const usd=Number(compraUsd.value), tasa=Number(compraTasa.value), dop=Number(compraDop.value), cliente=clienteCompra.value.trim(), documento=documentoCompra.value.trim();
-  const res=await fetch('/compra',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usuario_id:user.id,cliente_nombre:cliente,cliente_documento:documento,monto_dop:dop,tasa:tasa})});
-  const data=await res.json();if(data.error)return alert(data.error);
-  alert('Compra registrada. USD comprados: '+numero(data.usd)+'\nTotal pagado: '+dinero(dop));
-  generarRecibo({tipo:'COMPRA',cliente,documento,usd:data.usd,tasa,total:dop});
-  clienteCompra.value='';documentoCompra.value='';compraUsd.value='';compraTasa.value='';compraDop.value='';
-  actualizarBalance();showView('reciboView');
+
+  const moneda=monedaCompra.value;
+  const cantidad=Number(compraCantidad.value);
+  const tasa=Number(compraTasa.value);
+  const dop=Number(compraDop.value);
+  const cliente=clienteCompra.value.trim();
+  const documento=documentoCompra.value.trim();
+
+  const res=await fetch('/compra',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      usuario_id:user.id,
+      cliente_nombre:cliente,
+      cliente_documento:documento,
+      moneda,
+      monto_dop:dop,
+      tasa
+    })
+  });
+
+  const data=await res.json();
+  if(data.error)return alert(data.error);
+
+  alert(`Compra registrada. ${moneda} comprados: ${numero(data.cantidad_divisa)}\nTotal pagado: ${dinero(dop)}`);
+
+  generarRecibo({
+    tipo:'COMPRA',
+    moneda,
+    cliente,
+    documento,
+    cantidad:data.cantidad_divisa,
+    tasa,
+    total:dop
+  });
+
+  clienteCompra.value='';
+  documentoCompra.value='';
+  compraCantidad.value='';
+  compraTasa.value='';
+  compraDop.value='';
+
+  actualizarBalance();
+  showView('reciboView');
 }
 
-async function venderUSD(){
+async function venderDivisa(){
   calcularVenta();
-  const usd=Number(ventaUsd.value), tasa=Number(ventaTasa.value), dop=Number(ventaDop.value), cliente=clienteVenta.value.trim(), documento=documentoVenta.value.trim();
-  const res=await fetch('/venta',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({usuario_id:user.id,cliente_nombre:cliente,cliente_documento:documento,monto_usd:usd,tasa:tasa})});
-  const data=await res.json();if(data.error)return alert(data.error);
-  alert('Venta registrada. DOP recibidos: '+dinero(data.dop)+'\nGanancia interna: '+dinero(data.ganancia||0));
-  generarRecibo({tipo:'VENTA',cliente,documento,usd,tasa,total:data.dop});
-  clienteVenta.value='';documentoVenta.value='';ventaUsd.value='';ventaTasa.value='';ventaDop.value='';
-  actualizarBalance();showView('reciboView');
-}
 
+  const moneda=monedaVenta.value;
+  const cantidad=Number(ventaCantidad.value);
+  const tasa=Number(ventaTasa.value);
+  const dop=Number(ventaDop.value);
+  const cliente=clienteVenta.value.trim();
+  const documento=documentoVenta.value.trim();
+
+  const body={
+    usuario_id:user.id,
+    cliente_nombre:cliente,
+    cliente_documento:documento,
+    moneda,
+    cantidad_divisa:cantidad,
+    tasa
+  };
+
+  if(moneda==='USD')body.monto_usd=cantidad;
+  if(moneda==='EUR')body.monto_eur=cantidad;
+
+  const res=await fetch('/venta',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  });
+
+  const data=await res.json();
+  if(data.error)return alert(data.error);
+
+  alert(`Venta registrada. DOP recibidos: ${dinero(data.monto_dop||data.dop||dop)}\nGanancia interna: ${dinero(data.ganancia||0)}`);
+
+  generarRecibo({
+    tipo:'VENTA',
+    moneda,
+    cliente,
+    documento,
+    cantidad,
+    tasa,
+    total:data.monto_dop||data.dop||dop
+  });
+
+  clienteVenta.value='';
+  documentoVenta.value='';
+  ventaCantidad.value='';
+  ventaTasa.value='';
+  ventaDop.value='';
+
+  actualizarBalance();
+  showView('reciboView');
+}
 function generarRecibo(op){
   const fecha=new Date().toLocaleString();
   const opNum='OP-'+String(Date.now()).slice(-6);
-  ultimoReciboNombre=opNum+'-'+op.tipo.toLowerCase()+'.html';
+  ultimoReciboNombre=opNum+'-'+op.tipo.toLowerCase()+'-'+op.moneda.toLowerCase()+'.html';
+
   reciboContenedor.innerHTML=`
   <div id="reciboActual" class="recibo">
-    <h2>DIVISAS PRO</h2><h3>Casa de Cambio</h3><hr>
+    <h2>DIVISAS PRO</h2>
+    <h3>Casa de Cambio</h3>
+    <hr>
+
     <div class="recibo-row"><b>Operación:</b><span>${opNum}</span></div>
     <div class="recibo-row"><b>Fecha:</b><span>${fecha}</span></div>
-    <div class="recibo-row"><b>Tipo:</b><span>${op.tipo} USD</span></div>
-    <div class="recibo-row"><b>Cajero:</b><span>${user.nombre}</span></div><hr>
+    <div class="recibo-row"><b>Tipo:</b><span>${op.tipo} ${op.moneda}</span></div>
+    <div class="recibo-row"><b>Cajero:</b><span>${user.nombre}</span></div>
+
+    <hr>
+
     <div><b>Cliente:</b><br>${op.cliente||'-'}</div>
-    <div><b>Documento:</b><br>${op.documento||'-'}</div><hr>
-    <div class="recibo-row"><b>USD:</b><span>${numero(op.usd)}</span></div>
+    <div><b>Documento:</b><br>${op.documento||'-'}</div>
+
+    <hr>
+
+    <div class="recibo-row"><b>${op.moneda}:</b><span>${numero(op.cantidad)}</span></div>
     <div class="recibo-row"><b>Tasa:</b><span>RD$ ${Number(op.tasa||0).toFixed(2)}</span></div>
-    <div class="recibo-row"><b>Total DOP:</b><span>${dinero(op.total)}</span></div><hr>
+    <div class="recibo-row"><b>Total DOP:</b><span>${dinero(op.total)}</span></div>
+
+    <hr>
+
     <h3>Gracias por preferirnos</h3>
+
     <button class="no-print" onclick="window.print()">🖨️ Imprimir Recibo</button>
     <button class="no-print" onclick="descargarRecibo()">📄 Descargar Recibo</button>
   </div>`;
@@ -724,46 +909,147 @@ function generarRecibo(op){
 
 function descargarRecibo(){
   const recibo=document.getElementById('reciboActual');
+
   if(!recibo)return alert('No hay recibo para descargar');
-  const html=`<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><title>${ultimoReciboNombre}</title><style>body{font-family:monospace;padding:20px;color:#111827}.recibo{max-width:80mm;margin:auto;border:1px dashed #111827;padding:15px}h2,h3{text-align:center;margin:4px 0}hr{border:none;border-top:1px dashed #111827}.recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}button{display:none}</style></head><body>${recibo.outerHTML}</body></html>`;
-  const blob=new Blob([html],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=ultimoReciboNombre;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+
+  const html=`<!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>${ultimoReciboNombre}</title>
+    <style>
+      body{font-family:monospace;padding:20px;color:#111827}
+      .recibo{max-width:80mm;margin:auto;border:1px dashed #111827;padding:15px}
+      h2,h3{text-align:center;margin:4px 0}
+      hr{border:none;border-top:1px dashed #111827}
+      .recibo-row{display:flex;justify-content:space-between;gap:10px;margin:6px 0}
+      button{display:none}
+    </style>
+  </head>
+  <body>${recibo.outerHTML}</body>
+  </html>`;
+
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+
+  a.href=url;
+  a.download=ultimoReciboNombre;
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
 }
 
 async function cargarHistorial(){
   if(!user)return;
+
   const res=await fetch('/historial/'+user.id);
   const data=await res.json();
+
   if(data.error)return historial.innerHTML=data.error;
+
   let html='';
+
   data.forEach(m=>{
     const venta=m.tipo==='venta';
     const anulada=Number(m.anulada||0)===1;
-    const btnAnular=(user.rol==='admin'&&!anulada)?`<button class="rojo" onclick="anularTransaccion(${m.id})">Anular operación</button>`:'';
-    html+=`<div class="item ${venta?'venta':''} ${anulada?'anulada':''}"><span class="tag">OP-${String(m.id).padStart(6,'0')}</span><br><b>${String(m.tipo||'').toUpperCase()}</b> ${anulada?'<span class="tag" style="background:#ef4444;color:white">ANULADA</span>':''}<br><b>Cliente:</b> ${m.cliente_nombre||'-'}<br><b>Documento:</b> ${m.cliente_documento||'-'}<br><b>USD:</b> ${numero(m.monto_usd||0)}<br><b>Tasa:</b> RD$ ${Number(m.tasa||0).toFixed(2)}<br><b>Total DOP:</b> ${dinero(m.monto_dop||0)}<br>${venta?`<b>Ganancia:</b> <span class="${Number(m.ganancia||0)>=0?'ganancia':'perdida'}">${dinero(m.ganancia||0)}</span><br>`:''}${anulada?`<b>Motivo:</b> ${m.motivo_anulacion||'-'}<br><b>Fecha anulación:</b> ${m.fecha_anulacion||'-'}<br>`:''}<small>${m.fecha||''}</small>${btnAnular}</div>`;
+    const moneda=m.moneda||'USD';
+    const cantidad=Number(m.cantidad_divisa || (moneda==='USD'?m.monto_usd:m.monto_eur) || 0);
+
+    const btnAnular=(user.rol==='admin'&&!anulada)
+      ? `<button class="rojo" onclick="anularTransaccion(${m.id})">Anular operación</button>`
+      : '';
+
+    html+=`
+      <div class="item ${venta?'venta':''} ${anulada?'anulada':''}">
+        <span class="tag">OP-${String(m.id).padStart(6,'0')}</span><br>
+
+        <b>${String(m.tipo||'').toUpperCase()} ${moneda}</b>
+        ${anulada?'<span class="tag" style="background:#ef4444;color:white">ANULADA</span>':''}
+
+        <br><b>Cliente:</b> ${m.cliente_nombre||'-'}
+        <br><b>Documento:</b> ${m.cliente_documento||'-'}
+        <br><b>${moneda}:</b> ${numero(cantidad)}
+        <br><b>Tasa:</b> RD$ ${Number(m.tasa||0).toFixed(2)}
+        <br><b>Total DOP:</b> ${dinero(m.monto_dop||0)}
+
+        ${venta?`
+          <br><b>Ganancia:</b>
+          <span class="${Number(m.ganancia||0)>=0?'ganancia':'perdida'}">
+            ${dinero(m.ganancia||0)}
+          </span>
+        `:''}
+
+        ${anulada?`
+          <br><b>Motivo:</b> ${m.motivo_anulacion||'-'}
+          <br><b>Fecha anulación:</b> ${m.fecha_anulacion||'-'}
+        `:''}
+
+        <br><small>${m.fecha||''}</small>
+        ${btnAnular}
+      </div>`;
   });
+
   historial.innerHTML=html||'Sin movimientos';
 }
 
 async function anularTransaccion(id){
   if(user.rol!=='admin')return alert('Solo admin puede anular operaciones');
+
   const motivo=prompt('Motivo de anulación:');
   if(motivo===null)return;
   if(!motivo.trim())return alert('Debes escribir un motivo');
+
   if(!confirm('¿Seguro que deseas anular esta operación? Se revertirá el balance.'))return;
-  const res=await fetch('/transacciones/'+id+'/anular',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({admin_id:user.id,motivo:motivo.trim()})});
-  const data=await res.json();alert(data.mensaje||data.error);
-  if(!data.error){actualizarBalance();cargarHistorial();if(user.rol==='admin')cargarUsuarios();}
+
+  const res=await fetch('/transacciones/'+id+'/anular',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      admin_id:user.id,
+      motivo:motivo.trim()
+    })
+  });
+
+  const data=await res.json();
+  alert(data.mensaje||data.error);
+
+  if(!data.error){
+    actualizarBalance();
+    cargarHistorial();
+    if(user.rol==='admin')cargarUsuarios();
+  }
 }
 
 async function cargarHistorialFondos(){
   if(!user||user.rol!=='admin')return;
+
   const res=await fetch('/historial-fondos/'+user.id);
   const data=await res.json();
+
   if(data.error)return historialFondos.innerHTML=data.error;
+
   let html='';
+
   data.forEach(m=>{
-    html+=`<div class="item fondo"><span class="tag">MOV-${String(m.id).padStart(6,'0')}</span><br><b>${String(m.tipo||'').toUpperCase()}</b> ${m.moneda||''}<br><b>Cajero:</b> ${m.cajero||'-'}<br><b>Admin:</b> ${m.admin||'-'}<br><b>Monto:</b> ${m.moneda==='USD'?numero(m.monto):dinero(m.monto)}<br><small>${m.fecha||''}</small></div>`;
+    const montoTexto=m.moneda==='DOP'
+      ? dinero(m.monto)
+      : `${numero(m.monto)} ${m.moneda}`;
+
+    html+=`
+      <div class="item fondo">
+        <span class="tag">MOV-${String(m.id).padStart(6,'0')}</span><br>
+        <b>${String(m.tipo||'').toUpperCase()}</b> ${m.moneda||''}<br>
+        <b>Cajero:</b> ${m.cajero||'-'}<br>
+        <b>Admin:</b> ${m.admin||'-'}<br>
+        <b>Monto:</b> ${montoTexto}<br>
+        <small>${m.fecha||''}</small>
+      </div>`;
   });
+
   historialFondos.innerHTML=html||'Sin movimientos de fondos';
 }
 
@@ -776,12 +1062,13 @@ function exportarOperaciones(){
   if(!user)return;
   window.location.href="/exportar-operaciones/"+user.id;
 }
+
 async function cambiarRolUsuario(){
   if(!usuarioPassword.value){
     return alert("Seleccione un usuario");
   }
 
-  const res = await fetch("/cambiar-rol", {
+  const res=await fetch("/cambiar-rol", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
