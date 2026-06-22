@@ -206,7 +206,21 @@ button:hover{filter:brightness(1.05)}
 </div>
       </div>
 
-      
+      <div class="metrics">
+        <div class="metric">
+          <span>💰 Presupuesto DOP</span>
+          <h2 id="presupuesto">RD$ 0</h2>
+        </div>
+
+        <div class="metric">
+          <span>💵 USD Disponibles</span>
+          <h2 id="usd">0.00</h2>
+        </div>
+
+        <div class="metric">
+          <span>💶 EUR Disponibles</span>
+          <h2 id="eur">0.00</h2>
+        </div>
 
         <div class="metric">
           <span>👤 Rol</span>
@@ -540,7 +554,7 @@ function render(){
 
   presupuesto.innerHTML=dinero(dop);
   presupuestoHero.innerHTML=dinero(dop);
-
+  
 usdHero.innerHTML=numero(usd);
 eurHero.innerHTML=numero(eur);
   document.getElementById('usd').innerHTML=numero(usd);
