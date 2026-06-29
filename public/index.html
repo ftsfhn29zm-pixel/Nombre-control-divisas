@@ -588,6 +588,8 @@ async function actualizarBalance(){
   user=data;
   render();
 
+  await cargarGanancias();
+
   if(user.rol==='admin')cargarUsuarios();
 }
 
